@@ -5,14 +5,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Education Application Info</title>
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
   <nav>
     <div>
-      <input type="text" placeholder="Enter your name" id="title" class="title" spellcheck="false"/>
-      <input type="text" placeholder="Enter your Proffession" id="sub-title" class="title sub-title"/>
+      <input type="text" placeholder="Enter your name" id="title" class="title" spellcheck="false" value=""/>
+      <input type="text" placeholder="Enter your Proffession" id="sub-title" class="title sub-title" value=""/>
     </div>
   </nav>
   <div class="container">
@@ -394,6 +394,7 @@
 
   <button id="all">All</button>
   <button id="mode-toggle">Light</button>
+  <button id="clear-all" onclick="clearAllData()">Clear All data</button>
 
   <!-- NOTIFICATION -->
   <div id="notif">
@@ -416,13 +417,13 @@
         <p>
           can save your information, modify it anytime, and even add new sections or fields as needed.
         </p>
-
         <pre>
           Don't forget to save your data.
           To save your data use CTRL + S or the Save button below.
+          To clear your data use the Clear All button in the bottom left.
+          To switch theme use the mode button in the bottom right.
         </pre>
-        
-       
+        <p>Have fun!</p>
       </div>
       <div class="modal-footer">
         <button onclick="closeWelcomeModal()">Let's Get Started!</button>
@@ -430,7 +431,7 @@
     </div>
   </div>
 
-  <script src="./loader.js"></script>
+  <script src="./main.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 window.onload = function () {
-    updateUniversityList();
     fillData();
+    updateUniversityList();
     updateTheme()
     if (userData.length < 1) {
         console.log(userData, universities);
@@ -241,9 +241,16 @@ function saveData() {
 function fillData() {
     if (userData) {
         userData.forEach((data) => {
-            document.getElementById(data.id).value = data.value
+            if (data !== null) {
+                document.getElementById(data.id).value = data.value
+            }
         })
     }
+}
+
+function clearAllData() {
+    localStorage.clear();
+    window.location.reload();
 }
 
 document.addEventListener('keydown', function (event) {

@@ -251,6 +251,17 @@ li {
   margin-top: 10px;
   position: fixed;
   bottom: 20px;
+  right: 30px;
+}
+#clear-all {
+  background-color: transparent;
+  color: var(--menu-color);
+  border: 1px solid var(--menu-color);
+  outline: none;
+  cursor: pointer;
+  margin-top: 10px;
+  position: fixed;
+  bottom: 20px;
   left: 30px;
 }
 

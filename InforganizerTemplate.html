@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Education Application Info</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <nav>
+    <div>
+      <input type="text" placeholder="Enter your name" id="title" class="title" spellcheck="false"/>
+      <input type="text" placeholder="Enter your Proffession" id="sub-title" class="title sub-title"/>
+    </div>
+  </nav>
+  <div class="container">
+    <h3>Personal Information</h3>
+    <section id="info" class="grid-2" style="height: max-content">
+      <div>
+        <label for="nom">Nom:</label>
+        <div class="flex">
+          <input type="text" id="nom" value="" />
+          <button class="copy-field-button" onclick="copyField('nom')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="prenom">Prénom:</label>
+        <div class="flex">
+          <input type="text" id="prenom" value="" />
+          <button class="copy-field-button" onclick="copyField('prenom')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="phone">Numéro de téléphone:</label>
+        <div class="flex">
+          <input type="number" id="phone" value="" />
+          <button class="copy-field-button" onclick="copyField('phone')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="email">Email:</label>
+        <div class="flex">
+          <input type="text" id="email" value="" />
+          <button class="copy-field-button" onclick="copyField('email')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="massar">Massar:</label>
+        <div class="flex">
+          <input type="text" id="massar" value="" />
+          <button class="copy-field-button" onclick="copyField('massar')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="pswrd">Password Applications</label>
+        <div class="flex">
+          <input type="" id="pswrd" value="" />
+          <button class="copy-field-button" onclick="copyField('pswrd')">
+            Copy
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <h3>Carte National</h3>
+    <section id="carte" class="grid-2" style="height: 0px">
+      <div>
+        <label for="cin">CIN:</label>
+        <div class="flex">
+          <input type="text" id="cin" value="" />
+          <button class="copy-field-button" onclick="copyField('cin')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="lieu_naissance">lieu de naissance:</label>
+        <div class="flex">
+          <input id="lieu_naissance" value="" />
+          <button class="copy-field-button" onclick="copyField('lieu_naissance')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="address">Adresse:</label>
+        <div class="flex">
+          <input id="address" value="" />
+          <button class="copy-field-button" onclick="copyField('address')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="father_cni">CNI du père:</label>
+        <div class="flex">
+          <input type="text" id="father_cnie" value="" />
+          <button class="copy-field-button" onclick="copyField('father_cnie')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="father_dob">Date de naissance du père:</label>
+        <div class="flex">
+          <input type="text" id="father_dob" value="" />
+          <button class="copy-field-button" onclick="copyField('father_dob')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="father_profession">Proffession de votre père:</label>
+        <div class="flex">
+          <input type="text" id="father_profession" value="" />
+          <button class="copy-field-button" onclick="copyField('father_profession')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="mother_cni">CNI de la mère:</label>
+        <div class="flex">
+          <input type="text" id="mother_cnie" value="" />
+          <button class="copy-field-button" onclick="copyField('mother_cnie')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="mother_dob">Date de naissance de la mère:</label>
+        <div class="flex">
+          <input type="text" id="mother_dob" value="" />
+          <button class="copy-field-button" onclick="copyField('mother_dob')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="mother_profession">Proffession de votre mère:</label>
+        <div class="flex">
+          <input type="text" id="mother_profession" value="" />
+          <button class="copy-field-button" onclick="copyField('mother_profession')">
+            Copy
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <h3>Bacalauriat</h3>
+    <section id="bac" class="grid-2" style="height: 0px">
+      <div>
+        <div>
+          <label for="bac_school">Etablissement:</label>
+          <div class="flex">
+            <input type="text" id="bac_school" value="" />
+            <button class="copy-field-button" onclick="copyField('bac_school')">
+              Copy
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label for="bac_direction">Direction Provinciale:</label>
+          <div class="flex">
+            <input type="text" id="bac_direction" value="" />
+            <button class="copy-field-button" onclick="copyField('bac_direction')">
+              Copy
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label for="bac_session">Session:</label>
+          <div class="flex">
+            <input type="text" id="bac_session" value="" />
+            <button class="copy-field-button" onclick="copyField('bac_session')">
+              Copy
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label for="bac_year">Année:</label>
+          <div class="flex">
+            <input type="text" id="bac_year" value="" />
+            <button class="copy-field-button" onclick="copyField('bac_year')">
+              Copy
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label for="bac_mention">Mention:</label>
+          <div class="flex">
+            <input type="text" id="bac_mention" value="" />
+            <button class="copy-field-button" onclick="copyField('bac_mention')">
+              Copy
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label for="regional_note">Regional:</label>
+        <div class="flex">
+          <input type="text" id="regional_note" value="" />
+          <button class="copy-field-button" onclick="copyField('regional_note')">
+            Copy
+          </button>
+        </div>
+
+        <label for="national_note">National:</label>
+        <div class="flex">
+          <input type="text" id="national_note" value="" />
+          <button class="copy-field-button" onclick="copyField('national_note')">
+            Copy
+          </button>
+        </div>
+
+        <label for="cont_continue">CONT. CONTINUE:</label>
+        <div class="flex">
+          <input type="text" id="cont_continue" value="" />
+          <button class="copy-field-button" onclick="copyField('cont_continue')">
+            Copy
+          </button>
+        </div>
+
+        <label for="general_average">MOY. GENERALE:</label>
+        <div class="flex">
+          <input type="text" id="general_average" value="" />
+          <button class="copy-field-button" onclick="copyField('general_average')">
+            Copy
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <h3>Apres Bac</h3>
+    <section id="dts" class="grid-2" style="height: 0px">
+      <div>
+        <label for="ofppt_school">Etablissement:</label>
+        <div class="flex">
+          <input type="text" id="ofppt_school" value="" />
+          <button class="copy-field-button" onclick="copyField('ofppt_school')">
+            Copy
+          </button>
+        </div>
+
+        <label for="ofppt_direction">Direction Provinciale:</label>
+        <div class="flex">
+          <input type="text" id="ofppt_direction" value="" />
+          <button class="copy-field-button" onclick="copyField('ofppt_direction')">
+            Copy
+          </button>
+        </div>
+
+        <label for="Specialite">Specialite:</label>
+        <div class="flex">
+          <input type="text" id="Specialite" value="" />
+          <button class="copy-field-button" onclick="copyField('Specialite')">
+            Copy
+          </button>
+        </div>
+
+        <label for="ofppt_year">Année:</label>
+        <div class="flex">
+          <input type="text" id="ofppt_year" value="" />
+          <button class="copy-field-button" onclick="copyField('ofppt_year')">
+            Copy
+          </button>
+        </div>
+
+        <label for="ofppt_promotion">Promotion:</label>
+        <div class="flex">
+          <input type="text" id="ofppt_promotion" value="" />
+          <button class="copy-field-button" onclick="copyField('ofppt_promotion')">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label for="first_year_note">1ere Anne (2023):</label>
+        <div class="flex">
+          <input type="text" id="first_year_note" value="" />
+          <button class="copy-field-button" onclick="copyField('first_year_note')">
+            Copy
+          </button>
+        </div>
+
+        <label for="second_year_note">2eme Anne (2024):</label>
+        <div class="flex">
+          <input type="text" id="second_year_note" value="" />
+          <button class="copy-field-button" onclick="copyField('second_year_note')">
+            Copy
+          </button>
+        </div>
+
+        <label for="synthesis_note">Epeuve Synthese/100:</label>
+        <div class="flex">
+          <input type="text" id="synthesis_note" value="" />
+          <button class="copy-field-button" onclick="copyField('synthesis_note')">
+            Copy
+          </button>
+        </div>
+
+        <label for="geneal_note">Moyenne General:</label>
+        <div class="flex">
+          <input type="text" id="geneal_note" value="" />
+          <button class="copy-field-button" onclick="copyField('geneal_note')">
+            Copy
+          </button>
+        </div>
+
+        <label for="ofppt_mention">Mention:</label>
+        <div class="flex">
+          <input type="text" id="ofppt_mention" value="" />
+          <button class="copy-field-button" onclick="copyField('ofppt_mention')">
+            Copy
+          </button>
+        </div>
+    </section>
+
+    <!-- University Tracking -->
+    <h3>University Applications</h3>
+    <section id="application" style="height: 0px">
+      <div>
+        <label for="university_input">Name:</label>
+        <div>
+          <form class="flex" id="university_form">
+            <input type="text" id="university_input" placeholder="Enter university name" />
+            <select id="university_type">
+              <option value="CI">Cycle Ingenieur (CI)</option>
+              <option value="LP">Licence Professionnelle (LP)</option>
+              <option value="LE">Licence d'Excellence (LE)</option>
+            </select>
+            <button class="add-university-button" type="submit">
+              Add
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="university-list">
+        <h5>Applied Universities:</h5>
+        <ul id="university_list"></ul>
+      </div>
+    </section>
+    <!-- Copy All Button -->
+    <div class="flex gap-3">
+      <button class="copy-button bg-green" onclick="saveData()">
+        Save Data
+      </button>
+      <button class="copy-button" onclick="copyAll()">
+        Copy All Information
+      </button>
+    </div>
+  </div>
+
+  <div class="menu">
+    <ul>
+      <li><a href="#info" class="active">INFOs</a></li>
+      <li><a href="#carte">CIN</a></li>
+      <li><a href="#bac">BAC</a></li>
+      <li><a href="#dts">ApreBac</a></li>
+      <li><a href="#application">Applied</a></li>
+    </ul>
+  </div>
+
+  <button id="all">All</button>
+  <button id="mode-toggle">Light</button>
+
+  <!-- NOTIFICATION -->
+  <div id="notif">
+    <b>Success</b>
+    <p id="notif_msg"></p>
+  </div>
+  <!-- Welcome Modal -->
+  <div id="welcomeModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Welcome!</h2>
+        <span class="close" onclick="closeWelcomeModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p>Welcome to the University Application Manager.</p>
+        <p>
+          This app helps you organize your personal information, academic records, and track your university
+          applications efficiently.
+        </p>
+        <p>
+          can save your information, modify it anytime, and even add new sections or fields as needed.
+        </p>
+
+        <pre>
+          Don't forget to save your data.
+          To save your data use CTRL + S or the Save button below.
+        </pre>
+        
+       
+      </div>
+      <div class="modal-footer">
+        <button onclick="closeWelcomeModal()">Let's Get Started!</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./loader.js"></script>
+</body>
+
+</html>

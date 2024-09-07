@@ -1,0 +1,376 @@
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --menu-color: #010e193f;
+  --button-background-color: #cf3824;
+  --button-text-color: #ffffff;
+  --link-active-color: #000000;
+}
+
+body.dark-mode {
+  --background-color: hsl(240 10% 5%);
+  --text-color: #ffffff;
+  --menu-color: #ffffff3f;
+  --button-background-color: #cf3824;
+  --button-text-color: #fffffff5;
+  --link-active-color: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  margin: 0px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--background-color);
+  padding-inline: 50px;
+}
+@media (max-width: 400px) {
+  .container {
+    padding-inline: 15px;
+  }
+  .modal .modal-body {
+    transform: scale(0.8);
+  }
+}
+h3,
+h5 {
+  margin: 5px 0;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+input,
+select {
+  width: 100%;
+  border-color: var(--text-color);
+  border: 1px solid var(--text-color);
+  padding: 8px;
+  box-sizing: border-box;
+  outline: none;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: medium;
+}
+
+label {
+  text-transform: capitalize;
+}
+
+.flex {
+  display: flex;
+  align-items: stretch;
+  margin: 10px 0;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  border: none;
+  padding: 8px;
+  outline: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  color: var(--text-color);
+  font-size: xx-large;
+  font-weight: bolder;
+}
+#sub-title {
+  font-size: medium;
+  font-weight: normal;
+}
+
+.copy-field-button,
+.add-university-button {
+  margin-top: 10px;
+  cursor: pointer;
+  height: 100%;
+  margin: 0;
+  padding: 10px 8px;
+  box-sizing: border-box;
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+  border: solid 0.5px var(--text-color);
+  border-left: none;
+}
+.show-field-button {
+  margin-top: 10px;
+  cursor: pointer;
+  height: 100%;
+  margin: 0;
+  padding: 10px 8px;
+  box-sizing: border-box;
+  background-color: #404b91;
+  color: var(--button-text-color);
+  border: none;
+  width: 100%;
+}
+
+.copy-button {
+  width: 100%;
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 10px 0px;
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+}
+.copy-button:hover {
+  background-color: var(--button-background-color);
+  color: var(--background-color);
+}
+
+.university-list {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: var(--background-color);
+  border: 1px solid #b2b2b2;
+}
+
+.university-crud-btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.red {
+  color: #d91212 !important;
+}
+
+.blue {
+  color: #383883 !important;
+}
+
+.menu ul {
+  padding: 0px 10px;
+  box-sizing: border-box;
+}
+
+.menu a.active {
+  color: var(--link-active-color);
+  transform: scale(1.085);
+  transition: all 0.3s ease-in-out;
+}
+
+.menu a:hover {
+  transform: scale(1.085);
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu a {
+  text-decoration: none;
+  padding: 2px 0px;
+  color: var(--menu-color);
+  margin: 5px 0;
+}
+
+.menu {
+  position: fixed;
+  height: 0;
+  opacity: 0;
+  cursor: none;
+  pointer-events: none;
+  top: 30px;
+  left: 30px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.menu.menu-active {
+  opacity: 1;
+  height: auto;
+  cursor: pointer;
+  pointer-events: all;
+}
+#all {
+  color: var(--text-color);
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#notif {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  width: 280px;
+  height: max-content;
+  display: flex;
+  opacity: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: var(--background-color);
+  border: #c1c1c1 solid 1px;
+  transition: opacity 0.5s ease-in-out;
+}
+#notif b {
+  font-weight: 600;
+}
+#notif p {
+  margin: 0;
+}
+
+#mode-toggle {
+  background-color: transparent;
+  color: var(--menu-color);
+  border: 1px solid var(--menu-color);
+  outline: none;
+  cursor: pointer;
+  margin-top: 10px;
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
+}
+
+section {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease-in-out;
+  background-color: var(--background-color);
+}
+
+nav {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 12px auto 0px auto;
+  padding: 5px 20px;
+  box-sizing: border-box;
+}
+nav > span {
+  display: none;
+  border-radius: 50%;
+  height: 80px;
+  transform: rotate(-1deg);
+}
+nav > div p,
+h1 {
+  margin: 2.5px 0 0 0;
+}
+
+/* Add animation for the modal appearance */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal .modal-content {
+  animation: modalFadeIn 0.3s ease-in-out;
+}
+.gap-3 {
+  gap: 10px;
+}
+
+/* The Modal (background) */
+.modal {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: calc((100vh - 400px) / 2) auto;
+  padding: 20px;
+  border: 1px solid hsl(240, 1%, 55%);
+  width: 80%;
+  max-width: 500px;
+  border-radius: 0.3rem;
+}
+
+.modal-content pre {
+  font-size: small;
+  color: #b2b2b2;
+  margin-left: -50px;
+}
+
+/* Modal Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid hsl(240, 1%, 55%);
+  padding-bottom: 10px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+/* Modal Footer */
+.modal-footer {
+  margin-top: 10px;
+  text-align: right;
+}
+.modal-footer button {
+  background-color: var(--text-color);
+  color: var(--background-color);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: calc(0.3rem - 2px);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+}
+.modal-footer button:hover {
+  background-color: var(--menu-color);
+}
+
+.close {
+  cursor: pointer;
+  font-size: 1.125rem;
+  font-weight: 400;
+}

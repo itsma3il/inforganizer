@@ -3,8 +3,7 @@ window.onload = function () {
     updateUniversityList();
     updateTheme()
     if (userData.length < 1) {
-        console.log(userData, universities);
-        showWelcome();
+        showModal('welcomeModal');
     }
 };
 // <DARK MODE BUTTON ---------------------------------------------------------
@@ -131,25 +130,28 @@ function addUniversity() {
     const universityInput = document.getElementById("university_input");
     const universityType = document.getElementById("university_type").value;
     const universityName = universityInput.value.trim();
-
+    const universityStatus = document.getElementById("university_status").value; // Add this line
 
     if (universityName !== "") {
         if (editingIndex !== null) {
-            // Update existing university
             universities[editingIndex] = {
                 name: universityName,
                 type: universityType,
+                status: universityStatus // Add this line
             };
             editingIndex = null;
             notif('University updated successfully!');
         } else {
-            // Add new university
-            universities.push({ name: universityName, type: universityType });
+            universities.push({
+                name: universityName,
+                type: universityType,
+                status: universityStatus // Add this line
+            });
             notif('University added successfully!');
         }
         updateUniversityList();
         universityInput.value = "";
-        saveUniversities(); // Save to localStorage
+        saveUniversities();
     } else {
         notif("Please enter a university name.");
     }
@@ -163,7 +165,8 @@ function updateUniversityList() {
     universities.forEach((university, index) => {
         const li = document.createElement("li");
         li.innerHTML = `
-            ${index + 1}. ${university.name} - ${university.type}
+           ${index + 1}. ${university.name} - ${university.type} 
+            <span>Status: ${university.status}</span>
             <span>
                 <button onclick="editUniversity(${index})" class="university-crud-btn blue">Update</button>
                 <button onclick="deleteUniversity(${index})" class="university-crud-btn red">Delete</button>
@@ -193,44 +196,59 @@ function saveUniversities() {
     localStorage.setItem("universities", JSON.stringify(universities));
 }
 // Load the university list on page load--------------------------------------------
-function copyAll() {
-    const fields = document.querySelectorAll("input");
-    let info = "";
-    fields.forEach((field) => {
-        if (field.value) {
-            info += `${field.id} => ${field.value}\n`;
+
+// Function to export data
+function exportData() {
+    saveData();
+    const data = {
+        userData: JSON.parse(localStorage.getItem("userData")) || [],
+        universities: JSON.parse(localStorage.getItem("universities")) || []
+    };
+    const dataStr = JSON.stringify(data);
+    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+    const exportFileDefaultName = 'university_application_data.json';
+
+    let linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+}
+
+// Function to import data
+function importData(event) {
+    let importInput = document.getElementById('importData');
+    importInput.click();
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            localStorage.setItem("userData", JSON.stringify(data.userData));
+            localStorage.setItem("universities", JSON.stringify(data.universities));
+            fillData();
+            updateUniversityList();
+            notif('Data imported successfully!');
+        } catch (error) {
+            console.error('Error importing data:', error);
+            notif('Error importing data. Please check the file format.');
         }
-    });
+    };
 
-    info += "\nApplied Universities:\n";
-    universities.forEach((university, index) => {
-        info += `${index + 1}. ${university.name} - ${university.type}\n`;
-    });
-
-    navigator.clipboard
-        .writeText(info)
-        .then(() => {
-            notif("All information copied to clipboard!");
-        })
-        .catch((err) => {
-            console.error("Could not copy text: ", err);
-            notif("Failed to copy all information!");
-        });
+    reader.readAsText(file);
+    window.location.reload();
 }
 
 const userData = JSON.parse(localStorage.getItem("userData")) || [];
-
-
 function saveData() {
     try {
         let inputs = document.querySelectorAll("input");
         let data = [];
         inputs.forEach((input, i) => {
-            if (input.value) {
+            if (input.value != '' && input.value != null) {
                 data[i] = { id: input.id, value: input.value.trim() };
             }
         });
-
         localStorage.setItem('userData', JSON.stringify(data));
         notif('Your Information has been saved!');
     } catch (err) {
@@ -261,22 +279,26 @@ document.addEventListener('keydown', function (event) {
 });
 
 // Show Welcome Modal
-function showWelcome() {
-    const welcomeModal = document.getElementById('welcomeModal');
-    welcomeModal.style.display = 'block';
+function showModal(id) {
+    if (id) {
+        let m = document.getElementById(id);
+        m.style.display = 'block';
+    }
 }
 
 // Close Welcome Modal
-function closeWelcomeModal() {
-    const welcomeModal = document.getElementById('welcomeModal');
-    welcomeModal.style.display = 'none';
+function closeModal(id) {
+    if (id) {
+        let m = document.getElementById(id);
+        m.style.display = 'none';
+    }
 }
 
 // Close modal if user clicks outside the modal content
 window.onclick = function (event) {
-    const welcomeModal = document.getElementById('welcomeModal');
-    if (event.target === welcomeModal) {
-        welcomeModal.style.display = 'none';
+    let m = document.querySelector('#welcomeModal');
+    if (m) {
+        m.style.display = 'none';
     }
 };
 

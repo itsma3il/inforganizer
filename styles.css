@@ -265,6 +265,10 @@ li {
   left: 30px;
 }
 
+.w-100 {
+  width: 100%;
+}
+
 section {
   height: 0;
   overflow: hidden;
@@ -309,6 +313,14 @@ h1 {
 }
 .gap-3 {
   gap: 10px;
+}
+.gap-2 {
+  gap: 3.5px;
+}
+
+.b-s {
+  border-inline-start: 1px solid var(--text-color);
+  border-inline-end: none;
 }
 
 /* The Modal (background) */

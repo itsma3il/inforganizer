@@ -11,8 +11,8 @@
 <body>
   <nav>
     <div>
-      <input type="text" placeholder="Enter your name" id="title" class="title" spellcheck="false" value=""/>
-      <input type="text" placeholder="Enter your Proffession" id="sub-title" class="title sub-title" value=""/>
+      <input type="text" placeholder="Enter your name" id="title" class="title" spellcheck="false" />
+      <input type="text" placeholder="Enter your Proffession" id="sub-title" class="title sub-title" />
     </div>
   </nav>
   <div class="container">
@@ -353,11 +353,17 @@
         <label for="university_input">Name:</label>
         <div>
           <form class="flex" id="university_form">
-            <input type="text" id="university_input" placeholder="Enter university name" />
-            <select id="university_type">
+            <input type="text" id="university_input" class="b-s" placeholder="Enter university name" />
+            <select id="university_type" class="b-s">
               <option value="CI">Cycle Ingenieur (CI)</option>
               <option value="LP">Licence Professionnelle (LP)</option>
               <option value="LE">Licence d'Excellence (LE)</option>
+            </select>
+            <select id="university_status" class="b-s">
+              <option value="Applied" selected>Applied</option>
+              <option value="Pending">Pending</option>
+              <option value="Accepted">Accepted</option>
+              <option value="Rejected">Rejected</option>
             </select>
             <button class="add-university-button" type="submit">
               Add
@@ -373,12 +379,23 @@
     </section>
     <!-- Copy All Button -->
     <div class="flex gap-3">
-      <button class="copy-button bg-green" onclick="saveData()">
-        Save Data
-      </button>
-      <button class="copy-button" onclick="copyAll()">
-        Copy All Information
-      </button>
+      <div class="flex w-100 gap-2">
+        <button class="copy-button bg-green" onclick="clearAllData()">
+          Clear
+        </button>
+        <button class="copy-button bg-green" onclick="saveData()">
+          Save
+        </button>
+      </div>
+      <div class="flex w-100 gap-2">
+        <button class="copy-button" onclick="exportData()">
+          Export
+        </button>
+        <button class="copy-button" onclick="importData(event)">
+          Import
+        </button>
+      </div>
+      <input type="file" id="importData" style="display: none;" onchange="importData(event)">
     </div>
   </div>
 
@@ -406,7 +423,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h2>Welcome!</h2>
-        <span class="close" onclick="closeWelcomeModal()">&times;</span>
+        <span class="close" onclick="closeModal('welcomeModal')">&times;</span>
       </div>
       <div class="modal-body">
         <p>Welcome to the University Application Manager.</p>
@@ -426,7 +443,28 @@
         <p>Have fun!</p>
       </div>
       <div class="modal-footer">
-        <button onclick="closeWelcomeModal()">Let's Get Started!</button>
+        <button onclick="closeModal('welcomeModal')">Let's Get Started!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reminder Modal -->
+  <div class="modal" id="reminderModal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Reminder</h2>
+        <span class="close" onclick="closeModal('reminderModal')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p>
+          Don't forget to save your data.
+          To save your data use CTRL + S or the Save button below.
+          To clear your data use the Clear All button in the bottom left.
+          To switch theme use the mode button in the bottom right.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button onclick="closeModal('reminderModal')">Close</button>
       </div>
     </div>
   </div>

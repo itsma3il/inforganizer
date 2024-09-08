@@ -1,95 +1,78 @@
-# Inforganizer
+# University Application Organizer (InfOrganizer)
 
-This is a **Inforganizer** designed to help users store, manage, and edit their personal information, university applications, and related data in a customizable manner. It uses localStorage to persist data, allowing users to retrieve it anytime they revisit the app. The app also features dark mode, copy functionality, and a dynamic welcome modal to introduce users to the system.
+## Overview
+
+This application helps users organize their personal information, academic records, and manage university applications efficiently. Users can add, edit, and delete universities, store personal information, and switch between light and dark modes. The app supports custom sections and fields, ensuring flexibility in handling various kinds of information.
 
 ## Features
 
-1. **Dark Mode Toggle**: Allows users to switch between light and dark modes.
-2. **Accordion Menu**: Collapsible sections for better organization of content.
-3. **University CRUD**: Users can add, update, or delete university entries.
-4. **Data Persistence**: Data is saved to and retrieved from `localStorage`, ensuring user information is not lost after closing the app.
-5. **Copy Functionality**: Users can copy individual field values or all information at once.
-6. **Auto-Save Shortcut**: Users can press `Ctrl + S` to save their current data without interacting with buttons.
-7. **Welcome Modal**: A modal window that introduces the app to first-time users.
-8. **Notification System**: Real-time notifications inform users of actions such as saving data or copying content.
+1. **Dark/Light Mode**: Easily toggle between dark and light themes.
+2. **CRUD for Universities**: Users can add, update, and delete university applications.
+3. **Local Storage**: All the data, including personal information and university lists, is stored in the browser's local storage. This ensures that the user's data persists between sessions.
+4. **Welcome Modal**: A modal greets new users, explaining the application’s purpose and functionality.
+5. **Keyboard Shortcut for Saving**: Users can press `Ctrl+S` (or `Cmd+S` on Mac) to save their personal information quickly.
+6. **Dynamic Accordion Sections**: Toggle individual sections or show/hide all sections to organize information better.
+7. **Reminder Feature**: Users can set reminders for specific events or dates, and the app will display the reminders in the user's local time format.
+8. **Clipboard Copy**: Users can copy specific fields or all the information at once to their clipboard.
+9. **Internationalization (i18n)**: The app supports both English and French translations for various UI elements.
 
-## How It Works
+## Reminder Feature
 
-1. **Dark Mode**:
+The reminder feature allows users to set a reminder by selecting a date and time. The date is displayed in the user's local timezone. The application stores the reminder information in local storage, ensuring that reminders are persistent across browser sessions.
 
-   - A toggle button switches between light and dark mode.
-   - The selected theme is saved in `localStorage` for persistence across sessions.
+### Reminder Example:
 
-2. **Accordion Menu**:
+- The user can enter a reminder text and select a date and time.
+- The date and time input is automatically set to 5 hours from the current time.
+- All reminders are displayed in the user's local timezone for better accuracy.
 
-   - Sections are collapsible by clicking on their respective headers.
-   - The "Toggle All" button opens or closes all sections at once.
+## Translation Feature
 
-3. **CRUD Operations**:
+This application supports translation between **English** and **French** for the UI. The internationalization (i18n) feature allows the app's text to be dynamically switched based on the user's selected language.
 
-   - Universities are stored as an array in `localStorage`.
-   - The user can add, update, or delete university records dynamically.
+### Example of Translations
 
-4. **Data Management**:
+- **English:**
+  - "This app helps you organize your personal information, academic records, and track your university applications efficiently."
+  - "You can save your information, modify it anytime, and even add new sections or fields as needed."
+- **French:**
+  - "Cette application vous aide à organiser vos informations personnelles, vos dossiers académiques et à suivre vos candidatures universitaires de manière efficace."
+  - "Vous pouvez sauvegarder vos informations, les modifier à tout moment et même ajouter de nouvelles sections ou champs selon vos besoins."
 
-   - Personal information is saved in `localStorage` and can be retrieved when the page loads.
-   - The user can save all data by pressing `Ctrl + S` or by clicking the save button.
-
-5. **Welcome Modal**:
-
-   - If no data exists, a welcome modal introduces users to the application.
-   - The modal can be closed by clicking outside the modal content or clicking the close button.
-
-6. **Copy Functions**:
-   - Users can copy individual field values or all data at once for easy access.
-   - Notifications are displayed when the copy operation is successful.
-
-## Files
-
-1. **index.html**: The main HTML file that contains the structure of the app, including the form, university list, dark mode button, and welcome modal.
-2. **styles.css**: Contains the styles for the application, including dark mode, modal window, and general layout.
-3. **script.js**: JavaScript logic for managing data, updating the UI, and handling events like dark mode, CRUD operations, notifications, and saving data.
+These translations are handled using the `data-i18n` attribute for different UI elements.
 
 ## Installation
 
-To run this app locally, follow these steps:
-
-1. Clone or download the repository.
-2. Open the `index.html` file in your preferred web browser.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/itsma3il/InfOrganizer
+   ```
+2. Open the project in a local development environment.
+3. Open `index.html` in your browser to start using the application.
 
 ## Usage
 
-1. **First-Time Use**:
+### Adding a University
 
-   - When you first open the application, you will see a welcome modal explaining the app.
-   - Fill out your personal information and enter university applications.
+1. Enter the university name.
+2. Select the type of university (e.g., **Cycle Ingenieur**, **Licence Professionnelle**, etc.).
+3. Choose the status (e.g., **Applied**, **Pending**, **Accepted**, **Rejected**).
+4. Click the **Add** button.
 
-2. **Saving Data**:
+### Setting a Reminder
 
-   - You can manually save your data by clicking the **Save** button or by pressing `Ctrl + S` on your keyboard.
-   - The data is saved to your browser's `localStorage` and will persist even after you close or refresh the page.
+1. Enter the reminder text.
+2. Select the reminder date and time (default is 5 hours from the current time).
+3. Click the **Add Reminder** button.
+4. The reminder will be saved and displayed in your local timezone.
 
-3. **Managing Universities**:
+### Switching Between English and French
 
-   - Add new universities by filling out the university name and type and submitting the form.
-   - Edit or delete universities using the corresponding buttons next to each university entry.
+1. Select your language of choice using a dropdown or toggle in the application.
+2. The application will dynamically update the text on the page based on your selection.
 
-4. **Dark Mode**:
+## Technologies Used
 
-   - Toggle between light and dark mode using the button in the top-right corner.
-   - The mode will be saved and restored on the next visit.
-
-5. **Copying Information**:
-
-   - You can copy specific fields or all of your information with the provided copy buttons.
-
-6. **Clear All Data**:
-   - Use the "Clear All Data" button to reset all fields and remove saved data from `localStorage`.
-
-## Shortcuts
-
-- **Ctrl + S**: Save all data.
-
-## License
-
-This project is open-source and available for modification or distribution.
+- **HTML5/CSS3**: For the app structure and design.
+- **JavaScript**: For handling dynamic functionalities such as CRUD operations, reminders, and localization.
+- **Local Storage**: To save user data, reminders, and theme preferences.

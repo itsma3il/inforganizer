@@ -1,32 +1,25 @@
 window.onload = function () {
     fillData();
     updateUniversityList();
-    updateTheme()
-    if (userData.length < 1) {
+    updateReminderList();
+    if (userData.length < 1 && reminders.length < 1 && universities.length < 1) {
         showModal('welcomeModal');
     }
 };
-// <DARK MODE BUTTON ---------------------------------------------------------
+// < DARK MODE BUTTON ---------------------------------------------------------
 const toggleButton = document.getElementById("mode-toggle");
+const theme = localStorage.getItem("theme") || null;
+if (theme !== null) {
+    document.body.classList.add('dark-mode');
+}
+
 toggleButton.addEventListener("click", () => {
     toggleButton.textContent = document.body.classList.contains("dark-mode")
-        ? "Light"
-        : "Dark";
+        ? "Dark mode"
+        : "Light mode";
     document.body.classList.toggle("dark-mode");
-
-    if (document.body.classList.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark-mode");
-    } else {
-        localStorage.removeItem("theme");
-    }
-
+    localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark-mode" : null);
 });
-function updateTheme() {
-    const theme = localStorage.getItem("theme");
-    if (theme) {
-        document.body.classList.add(theme);
-    }
-}
 
 
 // ACCORDION -----------------------------------------------------------------
@@ -37,44 +30,31 @@ accordionButtons.forEach(element => {
         let isHidden = content.style.height == "0px";
 
         let menuId = content.getAttribute('id');
-        let link = document.querySelector(`a[href="#${menuId}"]`);
 
         if (isHidden) {
             content.style.height = content.scrollHeight + 'px';
-            link.classList.add('active');
             isHidden = false;
         } else {
             content.style.height = 0;
-            link.classList.remove('active');
             isHidden = true;
         }
     });
 });
 
 // TOGGLE ALL BUTTON ----------------------------------------------------------
-const sections = document.querySelectorAll('section');
 const menu = document.querySelector('.menu');
-const all = document.querySelector('#all');
-all.addEventListener('click', () => {
-    if (all.innerHTML === 'All') {
-        all.innerHTML = 'Close';
+const toggleMenu = document.querySelector('#toggleMenu');
+toggleMenu.addEventListener('click', () => {
+    if (toggleMenu.innerHTML === 'Menu') {
+        toggleMenu.innerHTML = 'Close';
         menu.classList.add('menu-active')
     } else {
-        all.innerHTML = 'All';
+        toggleMenu.innerHTML = 'Menu';
         menu.classList.remove('menu-active');
     }
-    sections.forEach(ele => {
-        if (ele.style.height === '0px') {
-            ele.style.height = ele.scrollHeight + 'px';
-        } else {
-            ele.style.height = 0;
-        }
-    })
 })
 // // SCROLL LINKS --------------------------------------------------------------
 window.addEventListener("scroll", function () {
-    const menuLinks = document.querySelectorAll(".menu a");
-
     let currentSection = "";
 
     sections.forEach((section) => {
@@ -82,13 +62,6 @@ window.addEventListener("scroll", function () {
         const sectionHeight = section.clientHeight;
         if (pageYOffset >= sectionTop - sectionHeight / 5) {
             currentSection = section.getAttribute("id");
-        }
-    });
-
-    menuLinks.forEach((link) => {
-        link.classList.remove("active");
-        if (link.getAttribute("href").substring(1) === currentSection) {
-            link.classList.add("active");
         }
     });
 });
@@ -113,14 +86,10 @@ function copyField(fieldId) {
             console.error("Could not copy text: ", err);
         });
 }
-// CRUD universities ADD DELETE UPDATE----------------------------------------
 // Retrieve universities from localStorage------------------------------------
-const universities =
-    JSON.parse(localStorage.getItem("universities")) || [];
-
+const universities = JSON.parse(localStorage.getItem("universities")) || [];
 // Function to add a university to the list---------------------------------------
 let editingIndex = null;
-
 let university_form = document.getElementById("university_form");
 university_form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -130,14 +99,14 @@ function addUniversity() {
     const universityInput = document.getElementById("university_input");
     const universityType = document.getElementById("university_type").value;
     const universityName = universityInput.value.trim();
-    const universityStatus = document.getElementById("university_status").value; // Add this line
+    const universityStatus = document.getElementById("university_status").value;
 
     if (universityName !== "") {
         if (editingIndex !== null) {
             universities[editingIndex] = {
                 name: universityName,
                 type: universityType,
-                status: universityStatus // Add this line
+                status: universityStatus
             };
             editingIndex = null;
             notif('University updated successfully!');
@@ -145,7 +114,7 @@ function addUniversity() {
             universities.push({
                 name: universityName,
                 type: universityType,
-                status: universityStatus // Add this line
+                status: universityStatus
             });
             notif('University added successfully!');
         }
@@ -166,7 +135,7 @@ function updateUniversityList() {
         const li = document.createElement("li");
         li.innerHTML = `
            ${index + 1}. ${university.name} - ${university.type} 
-            <span>Status: ${university.status}</span>
+            <span data-i18n="status">Status: ${university.status}</span>
             <span>
                 <button onclick="editUniversity(${index})" class="university-crud-btn blue">Update</button>
                 <button onclick="deleteUniversity(${index})" class="university-crud-btn red">Delete</button>
@@ -195,7 +164,6 @@ function deleteUniversity(index) {
 function saveUniversities() {
     localStorage.setItem("universities", JSON.stringify(universities));
 }
-// Load the university list on page load--------------------------------------------
 
 // Function to export data
 function exportData() {
@@ -213,14 +181,12 @@ function exportData() {
     linkElement.setAttribute('download', exportFileDefaultName);
     linkElement.click();
 }
-
 // Function to import data
 function importData(event) {
     let importInput = document.getElementById('importData');
     importInput.click();
     const file = event.target.files[0];
     const reader = new FileReader();
-
     reader.onload = function (e) {
         try {
             const data = JSON.parse(e.target.result);
@@ -234,7 +200,6 @@ function importData(event) {
             notif('Error importing data. Please check the file format.');
         }
     };
-
     reader.readAsText(file);
     window.location.reload();
 }
@@ -270,79 +235,117 @@ function clearAllData() {
     localStorage.clear();
     window.location.reload();
 }
-
 document.addEventListener('keydown', function (event) {
     if ((event.ctrlKey || event.metaKey) && event.key === 's') {
         event.preventDefault();
         saveData();
     }
 });
-
-// Show Welcome Modal
 function showModal(id) {
     if (id) {
         let m = document.getElementById(id);
         m.style.display = 'block';
     }
 }
-
-// Close Welcome Modal
 function closeModal(id) {
     if (id) {
         let m = document.getElementById(id);
         m.style.display = 'none';
     }
 }
-
-// Close modal if user clicks outside the modal content
-window.onclick = function (event) {
-    let m = document.querySelector('#welcomeModal');
-    if (m) {
-        m.style.display = 'none';
-    }
-};
-
-
-
-// MODAL ---------------------------------------------------------------------
-/*
-const urlFiles = {
-    'bac': "./Files/BAC/MOUSDIK_ISMAIL_BAC_RECTO.pdf",
-    'dts': "./Files/DTS/MOUSDIK_ISMAIL_DTS_NOTES.pdf",
-    'carte': "./Files/CIN/MOUSDIK_ISMAIL_CIN_RECTO.pdf"
-};
-
-const modal = document.querySelector(".modal");
-const modalBody = document.querySelector(".modal-body");
-const closeButton = document.querySelector(".close-button");
-
-// Function to close the modal
-function closeModal() {
-    modal.style.display = "none";
+// window.onclick = function (event) {
+//     let m = document.querySelector('#welcomeModal');
+//     if (m) {
+//         m.style.display = 'none';
+//     }
+// };
+function setDefaultDateTime() {
+    const reminderDate = document.getElementById("reminder_date");
+    const currentDate = new Date();
+    currentDate.setHours(currentDate.getHours() + 5);
+    const formattedDate = currentDate.toISOString().slice(0, 16);
+    reminderDate.value = formattedDate;
 }
+setDefaultDateTime();
+let reminderBtn = document.getElementById("reminder-btn");
+reminderBtn.addEventListener('click', () => showModal("reminderModal"))
 
-// Event listener for the close button
-closeButton.addEventListener("click", closeModal);
+let reminders = JSON.parse(localStorage.getItem("reminders")) || [];
 
-// Event listener for the Escape key to close the modal
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        closeModal();
+const reminderForm = document.getElementById("reminder_form");
+const reminderDate = document.getElementById("reminder_date");
+const reminderText = document.getElementById("reminder_text");
+reminderForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (reminderText.value && reminderDate.value) {
+        reminders.push({ text: reminderText.value, date: reminderDate.value });
+        saveReminders();
+        updateReminderList();
+        notif('Reminder added successfully!');
+        reminderText.value = "";
+    } else {
+        notif('Please enter both reminder text and date.');
+    }
+})
+
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && e.target.tagName === 'BUTTON') {
+        e.target.click();
     }
 });
-
-// Function to show the modal with dynamic content
-function showModal(type) {
-    let url = urlFiles[type];
-    let mContent = document.getElementById('m-content');
-    let mTitle = document.getElementById('m-title');
-    mTitle.textContent = type;
-    mContent.innerHTML = `<embed src="${url}" width="650" height="600">`;
-    modal.style.display = "flex";
+function saveReminders() {
+    localStorage.setItem("reminders", JSON.stringify(reminders));
 }
-*/
 
+function updateReminderList() {
+    const reminderList = document.getElementById("reminders-container");
+    reminderList.innerHTML = "";
 
+    reminders.forEach((reminder, index) => {
+        const localDate = new Date(reminder.date).toLocaleString();
+
+        const fieldset = document.createElement("fieldset");
+        fieldset.innerHTML = `
+           <legend>Reminder</legend>
+            <ul class="reminder_list">
+                <li>
+                    ${reminder.text}  <span>${localDate}</span>
+                    <button onclick="deleteReminder(${index})" class="red" >Delete</button>
+                </li>
+            </ul>
+        `;
+        reminderList.appendChild(fieldset);
+    });
+}
+function editReminder(index) {
+    const reminder = reminders[index];
+    reminderText.value = reminder.text;
+    reminderDate.value = reminder.date;
+    reminders.splice(index, 1);
+    saveReminders();
+    updateReminderList();
+    notif('Reminder edited successfully!');
+}
+
+function deleteReminder(index) {
+    reminders.splice(index, 1);
+    saveReminders();
+    updateReminderList();
+    notif('Reminder deleted successfully!');
+}
+
+function checkReminders() {
+    const today = new Date().toISOString().split('T')[0];
+    reminders.forEach(reminder => {
+        if (reminder.date >= today) {
+            notif(`Reminder: ${reminder.text}`);
+            showModal('reminderModal');
+        }
+    });
+}
+
+// Call checkReminders() when the page loads
+window.addEventListener('load', checkReminders);
 
 /*
 let menuLinks = document.querySelectorAll('.menu a');

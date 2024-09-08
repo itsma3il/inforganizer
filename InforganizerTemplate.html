@@ -11,361 +11,361 @@
 <body>
   <nav>
     <div>
-      <input type="text" placeholder="Enter your name" id="title" class="title" spellcheck="false" />
-      <input type="text" placeholder="Enter your Proffession" id="sub-title" class="title sub-title" />
+      <input type="text" data-i18n-placeholder="title" id="title" class="title" spellcheck="false" />
+      <input type="text" data-i18n-placeholder="subTitle" id="sub-title" class="title sub-title" />
     </div>
   </nav>
   <div class="container">
-    <h3>Personal Information</h3>
+    <h3 data-i18n="personalInformation">Personal Information</h3>
     <section id="info" class="grid-2" style="height: max-content">
       <div>
-        <label for="nom">Nom:</label>
+        <label for="nom" data-i18n="lastName">Nom:</label>
         <div class="flex">
           <input type="text" id="nom" value="" />
-          <button class="copy-field-button" onclick="copyField('nom')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('nom')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="prenom">Prénom:</label>
+        <label for="prenom" data-i18n="firstName">Prénom:</label>
         <div class="flex">
           <input type="text" id="prenom" value="" />
-          <button class="copy-field-button" onclick="copyField('prenom')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('prenom')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="phone">Numéro de téléphone:</label>
+        <label for="phone" data-i18n="phoneNumber">Numéro de téléphone:</label>
         <div class="flex">
           <input type="number" id="phone" value="" />
-          <button class="copy-field-button" onclick="copyField('phone')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('phone')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="email">Email:</label>
+        <label for="email" data-i18n="email">Email:</label>
         <div class="flex">
           <input type="text" id="email" value="" />
-          <button class="copy-field-button" onclick="copyField('email')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('email')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="massar">Massar:</label>
+        <label for="massar" data-i18n="massar">Massar:</label>
         <div class="flex">
           <input type="text" id="massar" value="" />
-          <button class="copy-field-button" onclick="copyField('massar')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('massar')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="pswrd">Password Applications</label>
+        <label for="pswrd" data-i18n="passwordApplications">Password Applications</label>
         <div class="flex">
           <input type="" id="pswrd" value="" />
-          <button class="copy-field-button" onclick="copyField('pswrd')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('pswrd')">
             Copy
           </button>
         </div>
       </div>
     </section>
 
-    <h3>Carte National</h3>
+    <h3 data-i18n="nationalCard">Carte National</h3>
     <section id="carte" class="grid-2" style="height: 0px">
       <div>
-        <label for="cin">CIN:</label>
+        <label for="cin" data-i18n="cin">CIN:</label>
         <div class="flex">
           <input type="text" id="cin" value="" />
-          <button class="copy-field-button" onclick="copyField('cin')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('cin')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="lieu_naissance">lieu de naissance:</label>
+        <label for="lieu_naissance" data-i18n="placeOfBirth">lieu de naissance:</label>
         <div class="flex">
           <input id="lieu_naissance" value="" />
-          <button class="copy-field-button" onclick="copyField('lieu_naissance')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('lieu_naissance')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="address">Adresse:</label>
+        <label for="address" data-i18n="address">Adresse:</label>
         <div class="flex">
           <input id="address" value="" />
-          <button class="copy-field-button" onclick="copyField('address')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('address')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="father_cni">CNI du père:</label>
+        <label for="father_cin" data-i18n="fatherCin">CIN du père:</label>
         <div class="flex">
-          <input type="text" id="father_cnie" value="" />
-          <button class="copy-field-button" onclick="copyField('father_cnie')">
+          <input type="text" id="father_cin" value="" />
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('father_cin')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="father_dob">Date de naissance du père:</label>
+        <label for="father_dob" data-i18n="fatherDateOfBirth">Date de naissance du père:</label>
         <div class="flex">
           <input type="text" id="father_dob" value="" />
-          <button class="copy-field-button" onclick="copyField('father_dob')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('father_dob')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="father_profession">Proffession de votre père:</label>
+        <label for="father_profession" data-i18n="fatherProfession">Proffession de votre père:</label>
         <div class="flex">
           <input type="text" id="father_profession" value="" />
-          <button class="copy-field-button" onclick="copyField('father_profession')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('father_profession')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="mother_cni">CNI de la mère:</label>
+        <label for="mother_cin" data-i18n="motherCin">CNI de la mère:</label>
         <div class="flex">
-          <input type="text" id="mother_cnie" value="" />
-          <button class="copy-field-button" onclick="copyField('mother_cnie')">
+          <input type="text" id="mother_cin" value="" />
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('mother_cin')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="mother_dob">Date de naissance de la mère:</label>
+        <label for="mother_dob" data-i18n="motherDateOfBirth">Date de naissance de la mère:</label>
         <div class="flex">
           <input type="text" id="mother_dob" value="" />
-          <button class="copy-field-button" onclick="copyField('mother_dob')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('mother_dob')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="mother_profession">Proffession de votre mère:</label>
+        <label for="mother_profession" data-i18n="motherProfession">Proffession de votre mère:</label>
         <div class="flex">
           <input type="text" id="mother_profession" value="" />
-          <button class="copy-field-button" onclick="copyField('mother_profession')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('mother_profession')">
             Copy
           </button>
         </div>
       </div>
     </section>
 
-    <h3>Bacalauriat</h3>
+    <h3 data-i18n="baccalaureate">Bacalauriat</h3>
     <section id="bac" class="grid-2" style="height: 0px">
       <div>
         <div>
-          <label for="bac_school">Etablissement:</label>
+          <label for="bac_school" data-i18n="institution">Etablissement:</label>
           <div class="flex">
             <input type="text" id="bac_school" value="" />
-            <button class="copy-field-button" onclick="copyField('bac_school')">
+            <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_school')">
               Copy
             </button>
           </div>
         </div>
 
         <div>
-          <label for="bac_direction">Direction Provinciale:</label>
+          <label for="bac_direction" data-i18n="provincialDirection">Direction Provinciale:</label>
           <div class="flex">
             <input type="text" id="bac_direction" value="" />
-            <button class="copy-field-button" onclick="copyField('bac_direction')">
+            <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_direction')">
               Copy
             </button>
           </div>
         </div>
 
         <div>
-          <label for="bac_session">Session:</label>
+          <label for="bac_session" data-i18n="session">Session:</label>
           <div class="flex">
             <input type="text" id="bac_session" value="" />
-            <button class="copy-field-button" onclick="copyField('bac_session')">
+            <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_session')">
               Copy
             </button>
           </div>
         </div>
 
         <div>
-          <label for="bac_year">Année:</label>
+          <label for="bac_year" data-i18n="year">Année:</label>
           <div class="flex">
             <input type="text" id="bac_year" value="" />
-            <button class="copy-field-button" onclick="copyField('bac_year')">
+            <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_year')">
               Copy
             </button>
           </div>
         </div>
 
         <div>
-          <label for="bac_mention">Mention:</label>
+          <label for="bac_mention" data-i18n="mention">Mention:</label>
           <div class="flex">
             <input type="text" id="bac_mention" value="" />
-            <button class="copy-field-button" onclick="copyField('bac_mention')">
+            <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_mention')">
               Copy
             </button>
           </div>
         </div>
       </div>
       <div>
-        <label for="regional_note">Regional:</label>
+        <label for="regional_note" data-i18n="regional">Regional:</label>
         <div class="flex">
           <input type="text" id="regional_note" value="" />
-          <button class="copy-field-button" onclick="copyField('regional_note')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('regional_note')">
             Copy
           </button>
         </div>
 
-        <label for="national_note">National:</label>
+        <label for="national_note" data-i18n="national">National:</label>
         <div class="flex">
           <input type="text" id="national_note" value="" />
-          <button class="copy-field-button" onclick="copyField('national_note')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('national_note')">
             Copy
           </button>
         </div>
 
-        <label for="cont_continue">CONT. CONTINUE:</label>
+        <label for="cont_continue" data-i18n="continuousAssessment">CONT. CONTINUE:</label>
         <div class="flex">
           <input type="text" id="cont_continue" value="" />
-          <button class="copy-field-button" onclick="copyField('cont_continue')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('cont_continue')">
             Copy
           </button>
         </div>
 
-        <label for="general_average">MOY. GENERALE:</label>
+        <label for="general_average" data-i18n="generalAverage">MOY. GENERALE:</label>
         <div class="flex">
           <input type="text" id="general_average" value="" />
-          <button class="copy-field-button" onclick="copyField('general_average')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('general_average')">
             Copy
           </button>
         </div>
       </div>
     </section>
 
-    <h3>Apres Bac</h3>
+    <h3 data-i18n="afterBaccalaureate">Apres Bac</h3>
     <section id="dts" class="grid-2" style="height: 0px">
       <div>
-        <label for="ofppt_school">Etablissement:</label>
+        <label for="ofppt_school" data-i18n="institution">Etablissement:</label>
         <div class="flex">
           <input type="text" id="ofppt_school" value="" />
-          <button class="copy-field-button" onclick="copyField('ofppt_school')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('ofppt_school')">
             Copy
           </button>
         </div>
 
-        <label for="ofppt_direction">Direction Provinciale:</label>
+        <label for="ofppt_direction" data-i18n="provincialDirection">Direction Provinciale:</label>
         <div class="flex">
           <input type="text" id="ofppt_direction" value="" />
-          <button class="copy-field-button" onclick="copyField('ofppt_direction')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('ofppt_direction')">
             Copy
           </button>
         </div>
 
-        <label for="Specialite">Specialite:</label>
+        <label for="Specialite" data-i18n="speciality">Specialite:</label>
         <div class="flex">
           <input type="text" id="Specialite" value="" />
-          <button class="copy-field-button" onclick="copyField('Specialite')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('Specialite')">
             Copy
           </button>
         </div>
 
-        <label for="ofppt_year">Année:</label>
+        <label for="ofppt_year" data-i18n="year">Année:</label>
         <div class="flex">
           <input type="text" id="ofppt_year" value="" />
-          <button class="copy-field-button" onclick="copyField('ofppt_year')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('ofppt_year')">
             Copy
           </button>
         </div>
 
-        <label for="ofppt_promotion">Promotion:</label>
+        <label for="ofppt_promotion" data-i18n="promotion">Promotion:</label>
         <div class="flex">
           <input type="text" id="ofppt_promotion" value="" />
-          <button class="copy-field-button" onclick="copyField('ofppt_promotion')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('ofppt_promotion')">
             Copy
           </button>
         </div>
       </div>
 
       <div>
-        <label for="first_year_note">1ere Anne (2023):</label>
+        <label for="first_year_note" data-i18n="firstYear">1ere Anne (2023):</label>
         <div class="flex">
           <input type="text" id="first_year_note" value="" />
-          <button class="copy-field-button" onclick="copyField('first_year_note')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('first_year_note')">
             Copy
           </button>
         </div>
 
-        <label for="second_year_note">2eme Anne (2024):</label>
+        <label for="second_year_note" data-i18n="secondYear">2eme Anne (2024):</label>
         <div class="flex">
           <input type="text" id="second_year_note" value="" />
-          <button class="copy-field-button" onclick="copyField('second_year_note')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('second_year_note')">
             Copy
           </button>
         </div>
 
-        <label for="synthesis_note">Epeuve Synthese/100:</label>
+        <label for="synthesis_note" data-i18n="synthesisTest">Epeuve Synthese/100:</label>
         <div class="flex">
           <input type="text" id="synthesis_note" value="" />
-          <button class="copy-field-button" onclick="copyField('synthesis_note')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('synthesis_note')">
             Copy
           </button>
         </div>
 
-        <label for="geneal_note">Moyenne General:</label>
+        <label for="geneal_note" data-i18n="generalMean">Moyenne General:</label>
         <div class="flex">
           <input type="text" id="geneal_note" value="" />
-          <button class="copy-field-button" onclick="copyField('geneal_note')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('geneal_note')">
             Copy
           </button>
         </div>
 
-        <label for="ofppt_mention">Mention:</label>
+        <label for="ofppt_mention" data-i18n="mention">Mention:</label>
         <div class="flex">
           <input type="text" id="ofppt_mention" value="" />
-          <button class="copy-field-button" onclick="copyField('ofppt_mention')">
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('ofppt_mention')">
             Copy
           </button>
         </div>
     </section>
 
     <!-- University Tracking -->
-    <h3>University Applications</h3>
+    <h3 data-i18n="universityApplications">University Applications</h3>
     <section id="application" style="height: 0px">
       <div>
-        <label for="university_input">Name:</label>
+        <label for="university_input" data-i18n="name">Name:</label>
         <div>
           <form class="flex" id="university_form">
-            <input type="text" id="university_input" class="b-s" placeholder="Enter university name" />
+            <input type="text" id="university_input" class="b-s" data-i18n-placeholder="Enter university name" />
             <select id="university_type" class="b-s">
-              <option value="CI">Cycle Ingenieur (CI)</option>
-              <option value="LP">Licence Professionnelle (LP)</option>
-              <option value="LE">Licence d'Excellence (LE)</option>
+              <option value="CI" data-i18n="cycleIngenieur">Cycle Ingenieur (CI)</option>
+              <option value="LP" data-i18n="licenceProfessionnelle">Licence Professionnelle (LP)</option>
+              <option value="LE" data-i18n="licenceExcellence">Licence d'Excellence (LE)</option>
             </select>
             <select id="university_status" class="b-s">
-              <option value="Applied" selected>Applied</option>
-              <option value="Pending">Pending</option>
-              <option value="Accepted">Accepted</option>
-              <option value="Rejected">Rejected</option>
+              <option value="Applied"data-i18n="applied" selected>Applied</option>
+              <option value="Pending"data-i18n="pending">Pending</option>
+              <option value="Accepted"data-i18n="Accepted">Accepted</option>
+              <option value="Rejected"data-i18n="Rejected">Rejected</option>
             </select>
-            <button class="add-university-button" type="submit">
+            <button class="add-university-button" type="submit" data-i18n="add">
               Add
             </button>
           </form>
@@ -373,25 +373,25 @@
       </div>
 
       <div class="university-list">
-        <h5>Applied Universities:</h5>
+        <h5 data-i18n="appliedUniversities">Applied Universities:</h5>
         <ul id="university_list"></ul>
       </div>
     </section>
     <!-- Copy All Button -->
     <div class="flex gap-3">
       <div class="flex w-100 gap-2">
-        <button class="copy-button bg-green" onclick="clearAllData()">
+        <button class="copy-button bg-green" data-i18n="clear" onclick="clearAllData()">
           Clear
         </button>
-        <button class="copy-button bg-green" onclick="saveData()">
+        <button class="copy-button bg-green" data-i18n="save" onclick="saveData()">
           Save
         </button>
       </div>
       <div class="flex w-100 gap-2">
-        <button class="copy-button" onclick="exportData()">
+        <button class="copy-button" data-i18n="export" onclick="exportData()">
           Export
         </button>
-        <button class="copy-button" onclick="importData(event)">
+        <button class="copy-button" data-i18n="import" onclick="importData(event)">
           Import
         </button>
       </div>
@@ -401,46 +401,45 @@
 
   <div class="menu">
     <ul>
-      <li><a href="#info" class="active">INFOs</a></li>
-      <li><a href="#carte">CIN</a></li>
-      <li><a href="#bac">BAC</a></li>
-      <li><a href="#dts">ApreBac</a></li>
-      <li><a href="#application">Applied</a></li>
+      <li>
+        <button id="reminder-btn" class="menu-item">Reminders</button>
+      </li>
+      <li>
+        <button id="mode-toggle" class="menu-item">Light Mode</button>
+      </li>
     </ul>
   </div>
 
-  <button id="all">All</button>
-  <button id="mode-toggle">Light</button>
-  <button id="clear-all" onclick="clearAllData()">Clear All data</button>
+  <button id="toggleMenu" data-i18n="menu">Menu</button>
+  
+  <select id="language" onchange="setLanguage(this.value)">
+    <option value="en">English</option>
+    <option value="fr">Français</option>
+  </select>
 
   <!-- NOTIFICATION -->
   <div id="notif">
-    <b>Success</b>
+    <b data-i18n="success">Success</b>
     <p id="notif_msg"></p>
   </div>
   <!-- Welcome Modal -->
   <div id="welcomeModal" class="modal" style="display: none;">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>Welcome!</h2>
+        <h2 data-i18n="welcome">Welcome!</h2>
         <span class="close" onclick="closeModal('welcomeModal')">&times;</span>
       </div>
       <div class="modal-body">
-        <p>Welcome to the University Application Manager.</p>
-        <p>
-          This app helps you organize your personal information, academic records, and track your university
-          applications efficiently.
+        <p data-i18n="welcomeMessage"></p>
+        <p data-i18n="appDescription1">
         </p>
-        <p>
-          can save your information, modify it anytime, and even add new sections or fields as needed.
+        <p data-i18n="appDescription2">
         </p>
-        <pre>
-          Don't forget to save your data.
-          To save your data use CTRL + S or the Save button below.
-          To clear your data use the Clear All button in the bottom left.
-          To switch theme use the mode button in the bottom right.
-        </pre>
-        <p>Have fun!</p>
+        <code data-i18n="rememberToSave1"></code>
+        <code data-i18n="rememberToSave2"></code>
+        <code data-i18n="rememberToSave3"></code>
+        <code data-i18n="rememberToSave4"></code>
+        <p data-i18n="haveFun"></p>
       </div>
       <div class="modal-footer">
         <button onclick="closeModal('welcomeModal')">Let's Get Started!</button>
@@ -449,27 +448,27 @@
   </div>
 
   <!-- Reminder Modal -->
-  <div class="modal" id="reminderModal" style="display: none;">
+  <div id="reminderModal" class="modal" style="display: none;">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>Reminder</h2>
+        <h2 data-i18n="reminders">Reminders</h2>
         <span class="close" onclick="closeModal('reminderModal')">&times;</span>
       </div>
       <div class="modal-body">
-        <p>
-          Don't forget to save your data.
-          To save your data use CTRL + S or the Save button below.
-          To clear your data use the Clear All button in the bottom left.
-          To switch theme use the mode button in the bottom right.
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button onclick="closeModal('reminderModal')">Close</button>
+        <form class="flex" id="reminder_form">
+          <input type="text" id="reminder_text" class="b-s" placeholder="Enter reminder text" />
+          <input type="datetime-local" id="reminder_date" class="b-s"/>
+          <button type="submit" data-i18n="add">Add</button>
+        </form>
+        <div id="reminders-container">
+
+        </div>
       </div>
     </div>
   </div>
 
   <script src="./main.js"></script>
+  <script src="./translation.js"></script>
 </body>
 
 </html>

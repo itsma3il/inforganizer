@@ -79,6 +79,12 @@ body {
     border-inline: 1px solid var(--text-color);
     border-bottom: none !important;
   }
+  #university_list {
+    padding-inline-start: 0 !important;
+  }
+  #university_list li {
+    flex-wrap: wrap;
+  }
   #reminder_form {
     flex-wrap: wrap;
   }

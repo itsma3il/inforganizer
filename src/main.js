@@ -20,11 +20,11 @@ toggleButton.addEventListener("click", () => {
 
         document.body.classList.remove('dark-mode');
         localStorage.setItem('theme', null);
-        document.getElementById('mode-toggle').innerHTML = 'Dark Mode';
+        document.getElementById('mode-toggle').innerHTML = 'Dark';
     } else {
         document.body.classList.add('dark-mode');
         localStorage.setItem('theme', 'dark-mode');
-        document.getElementById('mode-toggle').innerHTML = 'Light Mode';
+        document.getElementById('mode-toggle').innerHTML = 'Light';
     }
 });
 function switchTheme() {
@@ -32,12 +32,12 @@ function switchTheme() {
     if (theme === 'dark-mode') {
         document.body.classList.add('dark-mode');
         localStorage.setItem('theme', 'dark-mode');
-        document.getElementById('mode-toggle').innerHTML = 'Light Mode';
+        document.getElementById('mode-toggle').innerHTML = 'Light';
 
     } else {
         document.body.classList.remove('dark-mode');
         localStorage.setItem('theme', null);
-        document.getElementById('mode-toggle').innerHTML = 'Dark Mode';
+        document.getElementById('mode-toggle').innerHTML = 'Dark';
     }
 }
 

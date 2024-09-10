@@ -2,6 +2,7 @@ window.onload = function () {
     fillData();
     updateUniversityList();
     updateReminderList();
+    switchTheme();
     if (userData.length < 1 && reminders.length < 1 && universities.length < 1) {
         showModal('welcomeModal');
     }
@@ -14,12 +15,31 @@ if (theme !== null) {
 }
 
 toggleButton.addEventListener("click", () => {
-    toggleButton.textContent = document.body.classList.contains("dark-mode")
-        ? "Dark mode"
-        : "Light mode";
-    document.body.classList.toggle("dark-mode");
-    localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark-mode" : null);
+    let theme = localStorage.getItem('theme');
+    if (theme === 'dark-mode') {
+
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', null);
+        document.getElementById('mode-toggle').innerHTML = 'Dark Mode';
+    } else {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark-mode');
+        document.getElementById('mode-toggle').innerHTML = 'Light Mode';
+    }
 });
+function switchTheme() {
+    let theme = localStorage.getItem('theme');
+    if (theme === 'dark-mode') {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark-mode');
+        document.getElementById('mode-toggle').innerHTML = 'Light Mode';
+
+    } else {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', null);
+        document.getElementById('mode-toggle').innerHTML = 'Dark Mode';
+    }
+}
 
 
 // ACCORDION -----------------------------------------------------------------
@@ -27,7 +47,6 @@ let accordionButtons = document.querySelectorAll('h3');
 accordionButtons.forEach(element => {
     element.addEventListener('click', () => {
         const content = element.nextElementSibling;
-        console.log(content);
 
         let isHidden = content.style.height == "0px";
 
@@ -42,7 +61,15 @@ accordionButtons.forEach(element => {
         }
     });
 });
-
+let closeAll = document.getElementById('closeAll-toggle');
+closeAll.addEventListener('click', () => {
+    let sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        if (section.style.height !== '0px') {
+            section.style.height = 0;
+        }
+    })
+})
 // TOGGLE ALL BUTTON ----------------------------------------------------------
 const menu = document.querySelector('.menu');
 const toggleMenu = document.querySelector('#toggleMenu');

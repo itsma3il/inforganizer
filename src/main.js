@@ -27,12 +27,14 @@ let accordionButtons = document.querySelectorAll('h3');
 accordionButtons.forEach(element => {
     element.addEventListener('click', () => {
         const content = element.nextElementSibling;
+        console.log(content);
+
         let isHidden = content.style.height == "0px";
 
         let menuId = content.getAttribute('id');
 
         if (isHidden) {
-            content.style.height = content.scrollHeight + 'px';
+            content.style.height = content.scrollHeight + 1 + 'px';
             isHidden = false;
         } else {
             content.style.height = 0;
@@ -53,25 +55,15 @@ toggleMenu.addEventListener('click', () => {
         menu.classList.remove('menu-active');
     }
 })
-// // SCROLL LINKS --------------------------------------------------------------
-window.addEventListener("scroll", function () {
-    let currentSection = "";
-
-    sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - sectionHeight / 5) {
-            currentSection = section.getAttribute("id");
-        }
-    });
-});
 function notif(msg) {
     let notification = document.getElementById("notif");
     let message = document.getElementById("notif_msg");
     notification.style.opacity = 1;
+    notification.style.transform = "translateY(0)";
     message.innerHTML = msg;
     setTimeout(() => {
         notification.style.opacity = 0;
+        notification.style.transform = "translateY(-85px)";
     }, 1000);
 }
 
@@ -90,12 +82,13 @@ function copyField(fieldId) {
 const universities = JSON.parse(localStorage.getItem("universities")) || [];
 // Function to add a university to the list---------------------------------------
 let editingIndex = null;
-let university_form = document.getElementById("university_form");
+const university_form = document.getElementById("university_form");
 university_form.addEventListener('submit', (e) => {
     e.preventDefault();
     addUniversity();
 })
 function addUniversity() {
+    let section = university_form.parentElement.parentElement;
     const universityInput = document.getElementById("university_input");
     const universityType = document.getElementById("university_type").value;
     const universityName = universityInput.value.trim();
@@ -116,6 +109,9 @@ function addUniversity() {
                 type: universityType,
                 status: universityStatus
             });
+            section.style.height = section.scrollHeight + 15 + 'px';
+            console.log(section.scrollHeight + 15, 'added size');
+
             notif('University added successfully!');
         }
         updateUniversityList();
@@ -123,6 +119,20 @@ function addUniversity() {
         saveUniversities();
     } else {
         notif("Please enter a university name.");
+    }
+}
+
+function deleteAllUniversities() {
+    let section = university_form.parentElement.parentElement;
+
+    if (confirm("Are you sure you want to delete all universities?")) {
+        universities.splice(0, universities.length);
+        updateUniversityList();
+        saveUniversities();
+        section.style.height = section.firstElementChild.scrollHeight + 'px';
+        console.log(section.firstElementChild.scrollHeight, 'minus size');
+
+        notif('All universities deleted successfully!');
     }
 }
 
@@ -170,7 +180,8 @@ function exportData() {
     saveData();
     const data = {
         userData: JSON.parse(localStorage.getItem("userData")) || [],
-        universities: JSON.parse(localStorage.getItem("universities")) || []
+        universities: JSON.parse(localStorage.getItem("universities")) || [],
+        reminders: JSON.parse(localStorage.getItem("reminders")) || []
     };
     const dataStr = JSON.stringify(data);
     const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
@@ -192,6 +203,7 @@ function importData(event) {
             const data = JSON.parse(e.target.result);
             localStorage.setItem("userData", JSON.stringify(data.userData));
             localStorage.setItem("universities", JSON.stringify(data.universities));
+            localStorage.setItem("reminders", JSON.stringify(data.reminders));
             fillData();
             updateUniversityList();
             notif('Data imported successfully!');

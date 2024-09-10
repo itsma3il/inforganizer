@@ -30,17 +30,57 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   background-color: var(--background-color);
   padding-inline: 50px;
 }
-@media (max-width: 400px) {
+@media (max-width: 520px) {
   .container {
     padding-inline: 15px;
   }
-  .modal .modal-body {
-    transform: scale(0.8);
+  nav {
+    margin-top: 35px !important;
+  }
+  .menu {
+    top: -17.5px !important;
+    left: 62px !important;
+  }
+  .menu ul {
+    display: flex;
+    gap: 5px;
+  }
+  #toggleMenu {
+    left: 15px !important;
+    top: 10px !important;
+  }
+  #language {
+    top: 10px !important;
+    right: 15px !important;
+  }
+  #university_form {
+    flex-wrap: wrap;
+  }
+  #university_form input {
+    border: 1px solid var(--text-color);
+  }
+  #university_form button {
+    width: 100%;
+  }
+  #university_form select {
+    flex: 50%;
+    border-inline: 1px solid var(--text-color);
+  }
+  #reminder_form {
+    flex-wrap: wrap;
+  }
+  #reminder_form :first-child {
+    border: 1px solid var(--text-color);
+    border-bottom: none !important;
+  }
+  #reminder_form input {
+    flex: 50%;
+    border-inline: 1px solid var(--text-color);
   }
 }
 h3,
@@ -79,6 +119,9 @@ button {
   display: flex;
   align-items: stretch;
   margin: 10px 0;
+}
+.space-between {
+  justify-content: space-between;
 }
 .grid-2 {
   display: grid;
@@ -159,6 +202,12 @@ button {
   background-color: transparent;
   color: var(--text-color);
 }
+.delete-all {
+  border: none;
+  background-color: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+}
 
 li {
   display: flex;
@@ -217,21 +266,22 @@ li {
 }
 
 #notif {
+  display: flex;
   position: fixed;
   top: 20px;
-  right: 30px;
+  right: calc(50% - 170px);
   width: 280px;
   height: max-content;
-  display: flex;
-  opacity: 0;
   flex-direction: column;
   justify-content: center;
   gap: 3px;
-  padding: 10px 20px;
+  padding: 15px 25px;
   border-radius: 5px;
-  background-color: var(--background-color);
   border: #c1c1c1 solid 1px;
-  transition: opacity 0.5s ease-in-out;
+  background-color: var(--background-color);
+  opacity: 0;
+  transform: translateY(-85px);
+  transition: all 0.5s ease-in-out;
   z-index: 10000;
 }
 #notif b {
@@ -397,16 +447,17 @@ code {
   color: #b2b2b2;
 }
 #language {
-  position: fixed;
-  bottom: 20px;
-  left: 30px;
-  width: 100px;
+  width: 73px;
   height: 30px;
+  position: fixed;
+  top: 18px;
+  right: 30px;
   margin: 0;
   padding: 0;
   background-color: transparent;
   color: var(--text-color);
   border: none;
+  font-size: small;
   cursor: pointer;
 }
 .close {

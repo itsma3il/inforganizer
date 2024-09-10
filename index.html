@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Education Application Info</title>
+  <title>Inforganizer</title>
   <link rel="stylesheet" href="./src/styles.css" />
 </head>
 
 <body>
-  <nav>
-    <div>
-      <input type="text" data-i18n-placeholder="title" id="title" class="title" spellcheck="false" />
-      <input type="text" data-i18n-placeholder="subTitle" id="sub-title" class="title sub-title" />
-    </div>
-  </nav>
   <div class="container">
+    <nav>
+      <div>
+        <input type="text" data-i18n-placeholder="title" id="title" class="title" spellcheck="false" />
+        <input type="text" data-i18n-placeholder="subTitle" id="sub-title" class="title sub-title" />
+      </div>
+    </nav>
     <h3 data-i18n="personalInformation">Personal Information</h3>
     <section id="info" class="grid-2" style="height: max-content">
       <div>
@@ -172,57 +172,55 @@
       </div>
     </section>
 
-    <h3 data-i18n="baccalaureate">Bacalauriat</h3>
+    <h3 data-i18n="baccalaureate">Bacalaureat</h3>
     <section id="bac" class="grid-2" style="height: 0px">
       <div>
-        <div>
-          <label for="bac_school" data-i18n="institution">Etablissement:</label>
-          <div class="flex">
-            <input type="text" id="bac_school" value="" />
-            <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_school')">
-              Copy
-            </button>
-          </div>
+        <label for="bac_school" data-i18n="institution">Etablissement:</label>
+        <div class="flex">
+          <input type="text" id="bac_school" value="" />
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_school')">
+            Copy
+          </button>
         </div>
+      </div>
 
-        <div>
-          <label for="bac_direction" data-i18n="provincialDirection">Direction Provinciale:</label>
-          <div class="flex">
-            <input type="text" id="bac_direction" value="" />
-            <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_direction')">
-              Copy
-            </button>
-          </div>
+      <div>
+        <label for="bac_direction" data-i18n="provincialDirection">Direction Provinciale:</label>
+        <div class="flex">
+          <input type="text" id="bac_direction" value="" />
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_direction')">
+            Copy
+          </button>
         </div>
+      </div>
 
-        <div>
-          <label for="bac_session" data-i18n="session">Session:</label>
-          <div class="flex">
-            <input type="text" id="bac_session" value="" />
-            <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_session')">
-              Copy
-            </button>
-          </div>
+      <div>
+        <label for="bac_session" data-i18n="session">Session:</label>
+        <div class="flex">
+          <input type="text" id="bac_session" value="" />
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_session')">
+            Copy
+          </button>
         </div>
+      </div>
 
-        <div>
-          <label for="bac_year" data-i18n="year">Année:</label>
-          <div class="flex">
-            <input type="text" id="bac_year" value="" />
-            <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_year')">
-              Copy
-            </button>
-          </div>
+      <div>
+        <label for="bac_year" data-i18n="year">Année:</label>
+        <div class="flex">
+          <input type="text" id="bac_year" value="" />
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_year')">
+            Copy
+          </button>
         </div>
+      </div>
 
-        <div>
-          <label for="bac_mention" data-i18n="mention">Mention:</label>
-          <div class="flex">
-            <input type="text" id="bac_mention" value="" />
-            <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_mention')">
-              Copy
-            </button>
-          </div>
+      <div>
+        <label for="bac_mention" data-i18n="mention">Mention:</label>
+        <div class="flex">
+          <input type="text" id="bac_mention" value="" />
+          <button class="copy-field-button" data-i18n="copy" onclick="copyField('bac_mention')">
+            Copy
+          </button>
         </div>
       </div>
       <div>
@@ -233,6 +231,8 @@
             Copy
           </button>
         </div>
+      </div>
+      <div>
 
         <label for="national_note" data-i18n="national">National:</label>
         <div class="flex">
@@ -241,7 +241,8 @@
             Copy
           </button>
         </div>
-
+      </div>
+      <div>
         <label for="cont_continue" data-i18n="continuousAssessment">CONT. CONTINUE:</label>
         <div class="flex">
           <input type="text" id="cont_continue" value="" />
@@ -249,7 +250,8 @@
             Copy
           </button>
         </div>
-
+      </div>
+      <div>
         <label for="general_average" data-i18n="generalAverage">MOY. GENERALE:</label>
         <div class="flex">
           <input type="text" id="general_average" value="" />
@@ -351,29 +353,30 @@
     <section id="application" style="height: 0px">
       <div>
         <label for="university_input" data-i18n="name">Name:</label>
-        <div>
-          <form class="flex" id="university_form">
-            <input type="text" id="university_input" class="b-s" data-i18n-placeholder="Enter university name" />
-            <select id="university_type" class="b-s">
-              <option value="CI" data-i18n="cycleIngenieur">Cycle Ingenieur (CI)</option>
-              <option value="LP" data-i18n="licenceProfessionnelle">Licence Professionnelle (LP)</option>
-              <option value="LE" data-i18n="licenceExcellence">Licence d'Excellence (LE)</option>
-            </select>
-            <select id="university_status" class="b-s">
-              <option value="Applied"data-i18n="applied" selected>Applied</option>
-              <option value="Pending"data-i18n="pending">Pending</option>
-              <option value="Accepted"data-i18n="Accepted">Accepted</option>
-              <option value="Rejected"data-i18n="Rejected">Rejected</option>
-            </select>
-            <button class="add-university-button" type="submit" data-i18n="add">
-              Add
-            </button>
-          </form>
-        </div>
+        <form class="flex" id="university_form">
+          <input type="text" id="university_input" class="b-s" data-i18n-placeholder="Enter university name" />
+          <select id="university_type" class="b-s">
+            <option value="CI" data-i18n="cycleIngenieur">Cycle Ingenieur (CI)</option>
+            <option value="LP" data-i18n="licenceProfessionnelle">Licence Professionnelle (LP)</option>
+            <option value="LE" data-i18n="licenceExcellence">Licence d'Excellence (LE)</option>
+          </select>
+          <select id="university_status" class="b-s">
+            <option value="Applied" data-i18n="applied" selected>Applied</option>
+            <option value="Pending" data-i18n="pending">Pending</option>
+            <option value="Accepted" data-i18n="Accepted">Accepted</option>
+            <option value="Rejected" data-i18n="Rejected">Rejected</option>
+          </select>
+          <button class="add-university-button" type="submit" data-i18n="add">
+            Add
+          </button>
+        </form>
       </div>
 
       <div class="university-list">
-        <h5 data-i18n="appliedUniversities">Applied Universities:</h5>
+        <div class="flex space-between">
+          <h5 data-i18n="appliedUniversities">Applied Universities:</h5>
+          <button class="delete-all" data-i18n="deleteAll" onclick="deleteAllUniversities()">Delete all</button>
+        </div>
         <ul id="university_list"></ul>
       </div>
     </section>
@@ -411,7 +414,7 @@
   </div>
 
   <button id="toggleMenu" data-i18n="menu">Menu</button>
-  
+
   <select id="language" onchange="setLanguage(this.value)">
     <option value="en">English</option>
     <option value="fr">Français</option>
@@ -457,7 +460,7 @@
       <div class="modal-body">
         <form class="flex" id="reminder_form">
           <input type="text" id="reminder_text" class="b-s" placeholder="Enter reminder text" />
-          <input type="datetime-local" id="reminder_date" class="b-s"/>
+          <input type="datetime-local" id="reminder_date" class="b-s" />
           <button type="submit" data-i18n="add">Add</button>
         </form>
         <div id="reminders-container">

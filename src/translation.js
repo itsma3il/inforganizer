@@ -68,6 +68,7 @@ const translations = {
     lightMode: "Light Mode",
     darkMode: "Dark Mode",
     menu: "Menu",
+    deleteAll: "Delete All",
 
     // Modal
     welcome: "Welcome!",
@@ -153,6 +154,7 @@ const translations = {
     lightMode: "Mode Clair",
     darkMode: "Mode Sombre",
     menu: "Menu",
+    deleteAll: "Effacer tout",
 
     // Modal
     welcome: "Bienvenue !",

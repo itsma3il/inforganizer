@@ -3,10 +3,13 @@ window.onload = function () {
     updateUniversityList();
     updateReminderList();
     switchTheme();
+    LoadShowHideColumn();
     if (userData.length < 1 && reminders.length < 1 && universities.length < 1) {
         showModal('welcomeModal');
     }
 };
+
+
 // < DARK MODE BUTTON ---------------------------------------------------------
 const toggleButton = document.getElementById("mode-toggle");
 const theme = localStorage.getItem("theme") || null;
@@ -126,7 +129,7 @@ function addUniversity() {
             universities[editingIndex] = {
                 name: universityName,
                 type: universityType,
-                status: universityStatus
+                status: universityStatus,
             };
             editingIndex = null;
             notif('University updated successfully!');
@@ -134,11 +137,10 @@ function addUniversity() {
             universities.push({
                 name: universityName,
                 type: universityType,
-                status: universityStatus
+                status: universityStatus,
+                createdAt: new Date().toISOString()
             });
             section.style.height = section.scrollHeight + 15 + 'px';
-            console.log(section.scrollHeight + 15, 'added size');
-
             notif('University added successfully!');
         }
         updateUniversityList();
@@ -169,17 +171,21 @@ function updateUniversityList() {
     universityList.innerHTML = "";
 
     universities.forEach((university, index) => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-           ${index + 1}. ${university.name} - ${university.type} 
-            <span data-i18n="status">Status: ${university.status}</span>
-            <span>
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${university.name}</td>
+            <td>${university.type}</td>
+            <td>${university.status}</td>
+            <td>${university.createdAt !== undefined ? new Date(university.createdAt).toLocaleDateString() : 'N/A'}</td>
+            <td>
                 <button onclick="editUniversity(${index})" class="university-crud-btn blue">Update</button>
                 <button onclick="deleteUniversity(${index})" class="university-crud-btn red">Delete</button>
-            </span>
+            </td>
         `;
-        universityList.appendChild(li);
+        universityList.appendChild(tr);
     });
+    LoadShowHideColumn();
 }
 // Function to edit a university entry---------------------------------------------
 function editUniversity(index) {
@@ -202,6 +208,89 @@ function saveUniversities() {
     localStorage.setItem("universities", JSON.stringify(universities));
 }
 
+function sortUniversities(e, sortBy) {
+    let sortButton = e.target;
+    if (sortBy === "name") {
+        if (sortButton.textContent === 'Name ↓') {
+            sortButton.textContent = 'Name ↑';
+            universities.sort((a, b) => b.name.localeCompare(a.name));
+        } else {
+            sortButton.textContent = 'Name ↓';
+            universities.sort((a, b) => a.name.localeCompare(b.name));
+        }
+    } else if (sortBy === "type") {
+        if (sortButton.textContent === 'Type ↓') {
+            sortButton.textContent = 'Type ↑';
+            universities.sort((a, b) => b.type.localeCompare(a.type));
+        } else {
+            sortButton.textContent = 'Type ↓';
+            universities.sort((a, b) => a.type.localeCompare(b.type));
+        }
+    } else if (sortBy === "status") {
+        if (sortButton.textContent === 'Status ↓') {
+            sortButton.textContent = 'Status ↑';
+            universities.sort((a, b) => b.status.localeCompare(a.status));
+        } else {
+            sortButton.textContent = 'Status ↓';
+            universities.sort((a, b) => a.status.localeCompare(b.status));
+        }
+    } else if (sortBy === "created_at") {
+        if (sortButton.textContent === 'Date ↓') {
+            sortButton.textContent = 'Date ↑';
+            universities.sort((a, b) => {
+                const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+                const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+                return dateB - dateA;
+            });
+        } else {
+            sortButton.textContent = 'Date ↓';
+            universities.sort((a, b) => {
+                const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+                const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+                return dateA - dateB;
+            });
+        }
+    }
+    updateUniversityList();
+}
+
+function toggleDropdown(e) {
+    let dropdown = e.target.nextElementSibling;
+    if (dropdown.style.display === 'none') {
+        dropdown.style.display = 'flex';
+    } else {
+        dropdown.style.display = 'none';
+    }
+}
+
+const tableDropdownInputs = document.querySelectorAll('.dropdown table td input');
+tableDropdownInputs.forEach((input, index) => {
+    input.addEventListener('change', () => {
+        ShowHideColumn(index, input.checked);
+    })
+})
+function LoadShowHideColumn() {
+    tableDropdownInputs.forEach((input, index) => {
+        ShowHideColumn(index, input.checked);
+    })
+}
+
+function ShowHideColumn(index, checked) {
+    let table = document.querySelector('.tableList');
+    let tableHeaders = table.querySelectorAll('th');
+    let tableRows = table.querySelectorAll('tbody tr');
+    if (!checked) {
+        tableHeaders[index].style.display = 'none';
+        tableRows.forEach(row => {
+            row.children[index].style.display = 'none';
+        });
+    } else {
+        tableHeaders[index].style.display = 'table-cell';
+        tableRows.forEach(row => {
+            row.children[index].style.display = 'table-cell';
+        });
+    }
+}
 // Function to export data
 function exportData() {
     saveData();

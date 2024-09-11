@@ -577,15 +577,100 @@
         <div class="university-list">
           <div class="flex space-between">
             <h5 data-i18n="appliedUniversities">Applied Universities:</h5>
-            <button
-              class="delete-all"
-              data-i18n="deleteAll"
-              onclick="deleteAllUniversities()"
-            >
-              Delete all
-            </button>
+
+            <!-- what fields to show -->
+            <div>
+              <button class="dropdown-toggle" onclick="toggleDropdown(event)">
+                Show/Hide
+              </button>
+              <div class="dropdown" style="display: none">
+                <table>
+                  <tr class="flex">
+                    <td>
+                      <input type="checkbox" id="show_number" checked />
+                    </td>
+                    <td><label for="show_number">No</label></td>
+                  </tr>
+                  <tr class="flex">
+                    <td>
+                      <input type="checkbox" id="show_name" checked />
+                    </td>
+                    <td><label for="show_name">Name</label></td>
+                  </tr>
+                  <tr class="flex">
+                    <td>
+                      <input type="checkbox" id="show_type" checked />
+                    </td>
+                    <td><label for="show_type">Type</label></td>
+                  </tr>
+                  <tr class="flex">
+                    <td>
+                      <input type="checkbox" id="show_status" checked />
+                    </td>
+                    <td><label for="show_status">Status</label></td>
+                  </tr>
+                  <tr class="flex">
+                    <td>
+                      <input type="checkbox" id="show_date" />
+                    </td>
+                    <td><label for="show_date">Date</label></td>
+                  </tr>
+                  <tr class="flex">
+                    <td>
+                      <input type="checkbox" id="show_actions" checked />
+                    </td>
+                    <td><label for="show_actions">Actions</label></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
           </div>
-          <ul id="university_list"></ul>
+          <table class="tableList">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th
+                  onclick="sortUniversities(event,'name')"
+                  class="sort-button"
+                >
+                  Name ↓
+                </th>
+                <th
+                  onclick="sortUniversities(event,'type')"
+                  class="sort-button"
+                >
+                  Type ↓
+                </th>
+                <th
+                  onclick="sortUniversities(event,'status')"
+                  class="sort-button"
+                >
+                  Status ↓
+                </th>
+                <th
+                  onclick="sortUniversities(event,'created_at')"
+                  class="sort-button"
+                >
+                  Date ↓
+                </th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="university_list"></tbody>
+            <tfoot>
+              <tr>
+                <td colspan="6">
+                  <button
+                    class="delete-all"
+                    data-i18n="deleteAll"
+                    onclick="deleteAllUniversities()"
+                  >
+                    Delete all
+                  </button>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </section>
       <!-- Copy All Button -->

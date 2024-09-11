@@ -79,9 +79,7 @@ body {
     border-inline: 1px solid var(--text-color);
     border-bottom: none !important;
   }
-  #university_list {
-    padding-inline-start: 0 !important;
-  }
+
   #university_list li {
     flex-wrap: wrap;
   }
@@ -479,4 +477,62 @@ code {
   cursor: pointer;
   font-size: 1.125rem;
   font-weight: 400;
+}
+
+#sortBy {
+  width: 150px;
+  border: none;
+  background-color: transparent;
+  font-size: small;
+}
+#university_list {
+  padding-inline-start: 0 !important;
+}
+.tableList {
+  min-width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.tableList td {
+  padding: 10px;
+  border: none;
+}
+.tableList th {
+  padding: 10px;
+  border: none;
+}
+.sort-button {
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  margin-top: 5px;
+  font-size: small;
+  z-index: 10001;
+  padding: 5px 8px 5px 2px;
+  background-color: #e5e5e5;
+  color: var(--text-color);
+  border-radius: 0.3rem;
+}
+.dropdown td {
+  padding: 0px 5px;
+  line-height: 1.25rem;
+}
+.dropdown input {
+  cursor: pointer;
+}
+.dropdown input:checked {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+.dropdown label {
+  cursor: pointer;
+}
+.dropdown-toggle {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: small;
 }

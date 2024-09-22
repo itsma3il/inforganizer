@@ -91,10 +91,6 @@ These translations are handled using the `data-i18n` attribute for different UI 
 - **JavaScript**: For handling dynamic functionalities such as CRUD operations, reminders, and localization.
 - **Local Storage**: To save user data, reminders, and theme preferences.
 
-## Screenshots
-
-![Screenshot 1](images/screenshot1.png)
-
 ## Dependencies
 
 - No external libraries are required. This application uses vanilla JavaScript, HTML, and CSS.

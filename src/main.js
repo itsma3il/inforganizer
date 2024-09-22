@@ -130,6 +130,8 @@ function addUniversity() {
                 name: universityName,
                 type: universityType,
                 status: universityStatus,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
             };
             editingIndex = null;
             notif('University updated successfully!');
@@ -138,7 +140,8 @@ function addUniversity() {
                 name: universityName,
                 type: universityType,
                 status: universityStatus,
-                createdAt: new Date().toISOString()
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
             });
             section.style.height = section.scrollHeight + 15 + 'px';
             notif('University added successfully!');
@@ -192,7 +195,14 @@ function editUniversity(index) {
     const university = universities[index];
     document.getElementById("university_input").value = university.name;
     document.getElementById("university_type").value = university.type;
+    document.getElementById("university_status").value = university.status;
     editingIndex = index;
+
+    // Change the submit button text to "Update"
+    document.querySelector('button[type="submit"]').textContent = 'Update';
+
+    // Scroll to the form
+    document.getElementById("university_form").scrollIntoView({ behavior: 'smooth' });
 }
 // Function to delete a university entry with confirmation-------------------------
 function deleteUniversity(index) {

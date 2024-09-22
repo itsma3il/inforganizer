@@ -84,6 +84,11 @@ const translations = {
 
     // Notifications
     success: "Success",
+
+    // Language
+    language: "Language",
+    english: "English",
+    french: "French",
   },
   fr: {
     title: "Entrez votre nom",
@@ -170,6 +175,11 @@ const translations = {
 
     // Notifications
     success: "Succès",
+
+    // Langue
+    language: "Langue",
+    english: "Anglais",
+    french: "Français",
   }
 };
 

@@ -175,14 +175,15 @@ function updateUniversityList() {
 
     universities.forEach((university, index) => {
         const tr = document.createElement("tr");
-        console.log(university.status);
         university.status == 'Rejected' && tr.classList.add('rejected');
+        const createdDate = university.createdAt ? new Date(university.createdAt) : new Date(university.updatedAt);
+        const formattedDate = isNaN(createdDate) ? 'N/A' : createdDate.toLocaleDateString();
         tr.innerHTML = `
             <td>${index + 1}</td>
             <td>${university.name}</td>
             <td>${university.type}</td>
             <td>${university.status}</td>
-            <td>${university.createdAt !== undefined ? new Date(university.createdAt).toLocaleDateString() : new Date(university.updatedAt).toLocaleDateString()}</td>
+            <td>${formattedDate}</td>
             <td>
                 <button onclick="editUniversity(${index})" class="university-crud-btn blue">Update</button>
                 <button onclick="deleteUniversity(${index})" class="university-crud-btn red">Delete</button>

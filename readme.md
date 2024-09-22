@@ -8,7 +8,6 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
-- [Screenshots](#screenshots)
 - [Dependencies](#dependencies)
 - [Browser Compatibility](#browser-compatibility)
 - [Contributing](#contributing)

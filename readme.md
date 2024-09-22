@@ -28,6 +28,7 @@ This application helps users organize their personal information, academic recor
 7. **Reminder Feature**: Users can set reminders for specific events or dates, and the app will display the reminders in the user's local time format.
 8. **Clipboard Copy**: Users can copy specific fields or all the information at once to their clipboard.
 9. **Internationalization (i18n)**: The app supports both English and French translations for various UI elements.
+10. **Search Feature**: Users can search through their university applications and personal information.
 
 ## Reminder Feature
 
@@ -83,6 +84,26 @@ These translations are handled using the `data-i18n` attribute for different UI 
 
 1. Select your language of choice using a dropdown or toggle in the application.
 2. The application will dynamically update the text on the page based on your selection.
+
+## Search Feature
+
+The search feature allows users to quickly find specific information within their university applications and personal data. This feature enhances the user experience by providing fast access to relevant information.
+
+### How it works:
+
+1. **Real-time Search**: As users type in the search bar, results are updated in real-time.
+2. **Comprehensive Search**: The search function looks through all university applications and personal information fields.
+3. **Highlighted Results**: Matching search terms are highlighted in the results for easy identification.
+4. **Case-insensitive**: The search is case-insensitive, making it easier for users to find what they're looking for.
+
+### Using the Search Feature:
+
+1. Locate the search bar at the top left Menu.
+2. Start typing your search query.
+3. Results will appear automatically, showing matching universities and personal information.
+4. Click on a result to navigate directly to that piece of information.
+
+This feature significantly improves navigation and information retrieval within the application, especially for users with a large number of university applications or extensive personal data.
 
 ## Technologies Used
 

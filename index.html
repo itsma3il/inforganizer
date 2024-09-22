@@ -672,7 +672,7 @@
           </table>
         </div>
       </section>
-      <!-- Copy All Button -->
+      <!-- bottom buttons -->
       <div class="flex gap-3">
         <div class="flex w-100 gap-2">
           <button
@@ -714,13 +714,13 @@
     <div class="menu">
       <ul>
         <li>
-          <button id="reminder-btn" class="menu-item" data-i18n="reminders">
-            Reminders
+          <button id="search-btn" class="menu-item" data-i18n="search">
+            Search
           </button>
         </li>
         <li>
-          <button id="search-btn" class="menu-item" data-i18n="search">
-            Search
+          <button id="reminder-btn" class="menu-item" data-i18n="reminders">
+            Reminders
           </button>
         </li>
         <li>
@@ -811,7 +811,12 @@
               class="b-s"
               data-i18n-placeholder="searchPlaceholder"
             />
-            <button type="submit" data-i18n="search">Search</button>
+            <input
+              type="reset"
+              id="clear_search"
+              data-i18n="clear"
+              value="&times;"
+            />
           </form>
           <div id="search-results"></div>
         </div>

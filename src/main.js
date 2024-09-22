@@ -57,10 +57,7 @@ let accordionButtons = document.querySelectorAll('h3');
 accordionButtons.forEach(element => {
     element.addEventListener('click', () => {
         const content = element.nextElementSibling;
-
         let isHidden = content.style.height == "0px";
-
-        let menuId = content.getAttribute('id');
 
         if (isHidden) {
             content.style.height = content.scrollHeight + 1 + 'px';
@@ -398,6 +395,7 @@ function closeModal(id) {
     if (id) {
         let m = document.getElementById(id);
         m.style.display = 'none';
+        clearSearch();
     }
 }
 // Close modal when clicking outside
@@ -405,7 +403,8 @@ window.onclick = function (event) {
     let modals = document.querySelectorAll('.modal');
     modals.forEach(modal => {
         if (event.target == modal) {
-            modal.style.display = 'none';
+            closeModal(modal.id);
+            clearSearch();
         }
     });
 };
@@ -499,26 +498,10 @@ function checkReminders() {
 
 // Call checkReminders() when the page loads
 window.addEventListener('load', checkReminders);
-
-/*
-let menuLinks = document.querySelectorAll('.menu a');
-menuLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const content = document.querySelector(link.getAttribute('href'));
-        let isHidden = content.style.height == "0px";
-        // Open the clicked section
-        if (isHidden && !link.classList.contains('active')) {
-            content.style.height = content.scrollHeight + 'px';
-        } else {
-            content.style.height = 0;
-        }
-        link.classList.toggle('active');
-    });
-});
-*/
-
-
+document.getElementById('search-btn').addEventListener('click', () => {
+    showModal('searchModal');
+    document.getElementById("search_text").focus();
+})
 // SEARCH MODAL ----------------------------------------------------------------
 const searchModal = document.getElementById("searchModal");
 // in ctrl + f open search modal
@@ -530,75 +513,75 @@ document.addEventListener('keydown', function (e) {
     }
 });
 const searchForm = document.getElementById("search_form");
-searchForm.firstElementChild.addEventListener('keyup', () => {
-    let searchText = searchForm.firstElementChild.value.toLowerCase();
+const searchInput = searchForm.firstElementChild;
+const searchResults = document.getElementById("search-results");
+
+searchInput.addEventListener('input', debounce(() => {
+    const searchText = searchInput.value.toLowerCase();
     if (searchText.length > 2) {
-        searchStorage();
+        searchStorage(searchText);
     } else {
         clearSearch();
     }
-})
-searchForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-})
-// search Local Storage
+}, 300));
+
+searchForm.addEventListener('submit', (e) => e.preventDefault());
+
 function clearSearch() {
-    const searchResults = document.getElementById("search-results");
     searchResults.innerHTML = "";
 }
-function searchStorage() {
-    const searchText = document.getElementById("search_text").value.toLowerCase();
-    const searchResults = document.getElementById("search-results");
-    searchResults.innerHTML = "";
 
-    // Search universities
+function searchStorage(searchText) {
+    clearSearch();
+
     const universityResults = universities.filter(university =>
-        university.name.toLowerCase().includes(searchText) ||
-        university.type.toLowerCase().includes(searchText) ||
-        university.status.toLowerCase().includes(searchText)
+        [university.name, university.type, university.status].some(field =>
+            field.toLowerCase().includes(searchText)
+        )
     );
 
-    // Search userData
-    const userDataResults = userData.slice(2).filter(data => {
-        if (typeof data === 'object' && data !== null) {
-            return (data.id && data.id.toLowerCase().includes(searchText)) ||
-                (data.value && data.value.toLowerCase().includes(searchText));
-        }
-        return false;
-    });
-    let copiedSvg = `<svg width="15px" height="15px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.4" d="M22 11.1V6.9C22 3.4 20.6 2 17.1 2H12.9C9.4 2 8 3.4 8 6.9V8H11.1C14.6 8 16 9.4 16 12.9V16H17.1C20.6 16 22 14.6 22 11.1Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 17.1V12.9C16 9.4 14.6 8 11.1 8H6.9C3.4 8 2 9.4 2 12.9V17.1C2 20.6 3.4 22 6.9 22H11.1C14.6 22 16 20.6 16 17.1Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.08008 14.9998L8.03008 16.9498L11.9201 13.0498" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`
-    let copySvg = `<svg width="15px" height="15px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path opacity="0.4" d="M22 6.9V11.1C22 14.6 20.6 16 17.1 16H16V12.9C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2H17.1C20.6 2 22 3.4 22 6.9Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+    const userDataResults = userData.slice(2).filter(data =>
+        data && typeof data === 'object' &&
+        (data.id?.toLowerCase().includes(searchText) ||
+            data.value?.toLowerCase().includes(searchText))
+    );
 
-    // Display university results
+    displayResults(universityResults, userDataResults);
+}
+
+function displayResults(universityResults, userDataResults) {
+    const copySvg = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path opacity="0.4" d="M22 6.9V11.1C22 14.6 20.6 16 17.1 16H16V12.9C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2H17.1C20.6 2 22 3.4 22 6.9Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
     if (universityResults.length > 0) {
-        searchResults.innerHTML += "<h5>Universities:</h5>";
         const ul = document.createElement("ul");
         universityResults.forEach(university => {
             const li = document.createElement("li");
             li.textContent = `${university.name} - ${university.type} - ${university.status}`;
+            li.style.cursor = 'pointer';
+            li.classList.add('search-university');
+            li.setAttribute('onclick', `highlightUniversity('${university.name}')`);
             ul.appendChild(li);
         });
+        searchResults.innerHTML = "<h5>Universities:</h5>";
         searchResults.appendChild(ul);
     }
 
-    // Display userData results
     if (userDataResults.length > 0) {
-        searchResults.innerHTML += "<h5>User Data:</h5>";
-        let labels = document.querySelectorAll('label');
-        let ul = document.createElement("ul");
+        const ul = document.createElement("ul");
+        const labels = Object.fromEntries([...document.querySelectorAll('label')].map(label => [label.getAttribute('for'), label]));
         userDataResults.forEach(data => {
-            if (data.id != '' && data != '') {
-                let li = document.createElement("li");
-                labels.forEach(label => {
-                    if (label.getAttribute('for') === data.id) {
-                        li.innerHTML = `<span>${label.textContent} : ${data.value}</span>
-                        <button class="search-result-btn" onClick="copyField('${data.id}')">${copySvg}</button>`;
-                        li.id = data.id;
-                    }
-                });
-                ul.appendChild(li);
+            if (data.id && data.value) {
+                const li = document.createElement("li");
+                const label = labels[data.id];
+                if (label) {
+                    li.innerHTML = `<span>${label.textContent} : ${data.value}</span>
+                    <button class="search-result-btn" onClick="copyField('${data.id}')">${copySvg}</button>`;
+                    li.id = data.id;
+                    ul.appendChild(li);
+                }
             }
         });
+        searchResults.innerHTML += "<h5>User Data:</h5>";
         searchResults.appendChild(ul);
     }
 
@@ -606,3 +589,36 @@ function searchStorage() {
         searchResults.innerHTML = "<p>No results found.</p>";
     }
 }
+
+function highlightUniversity(universityName) {
+    closeModal('searchModal');
+    const universityList = document.getElementById("university_list");
+    const row = [...universityList.getElementsByTagName('tr')].find(row => row.cells[1].textContent === universityName);
+
+    if (row) {
+        expandAccordion('application');
+        setTimeout(() => {
+            const yOffset = -window.innerHeight / 2 + row.clientHeight / 2;
+            const y = row.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+            row.classList.add('highlight');
+            setTimeout(() => row.classList.remove('highlight'), 1500);
+        }, 500);
+    }
+}
+
+function expandAccordion(accordionId) {
+    const accordion = document.getElementById(accordionId);
+    if (accordion.style.height === "0px") {
+        accordion.style.height = accordion.scrollHeight + 1 + 'px';
+    }
+}
+
+function debounce(func, delay) {
+    let timeoutId;
+    return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+

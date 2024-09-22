@@ -171,6 +171,7 @@ button {
 }
 
 .copy-field-button,
+#clear_search,
 .add-university-button {
   margin-top: 10px;
   cursor: pointer;
@@ -178,6 +179,7 @@ button {
   margin: 0;
   padding: 10px 8px;
   box-sizing: border-box;
+  width: min-content;
   background-color: var(--button-background-color);
   color: var(--button-text-color);
   border: solid 0.5px var(--text-color);
@@ -249,6 +251,10 @@ li {
   margin: 0 0 0 50px;
   padding: 0px 10px;
   box-sizing: border-box;
+  display: flex;
+  width: 165px;
+  flex-wrap: wrap;
+  column-gap: 5px;
 }
 
 .menu a:hover {
@@ -281,6 +287,17 @@ li {
   cursor: pointer;
   pointer-events: all;
 }
+
+.menu-item {
+  background-color: transparent;
+  color: var(--menu-color);
+  border: 1px solid var(--menu-color);
+  outline: none;
+  cursor: pointer;
+  margin-top: 10px;
+  position: relative;
+}
+
 #toggleMenu {
   color: var(--text-color);
   position: fixed;
@@ -313,16 +330,6 @@ li {
 }
 #notif p {
   margin: 0;
-}
-
-.menu-item {
-  background-color: transparent;
-  color: var(--menu-color);
-  border: 1px solid var(--menu-color);
-  outline: none;
-  cursor: pointer;
-  margin-top: 10px;
-  position: relative;
 }
 
 .w-100 {
@@ -592,4 +599,9 @@ code {
 }
 #search-results ul li svg path {
   stroke: var(--text-color) !important;
+}
+.highlight {
+  background-color: var(--search-result-hover-color) !important;
+  color: var(--text-color) !important;
+  filter: drop-shadow(0 0 5px rgb(105, 0, 0)) !important;
 }

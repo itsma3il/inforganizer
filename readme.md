@@ -8,7 +8,6 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
-- [Screenshots](#screenshots)
 - [Dependencies](#dependencies)
 - [Browser Compatibility](#browser-compatibility)
 - [Contributing](#contributing)
@@ -91,10 +90,6 @@ These translations are handled using the `data-i18n` attribute for different UI 
 - **JavaScript**: For handling dynamic functionalities such as CRUD operations, reminders, and localization.
 - **Local Storage**: To save user data, reminders, and theme preferences.
 
-## Screenshots
-
-![Screenshot 1](images/screenshot1.png)
-
 ## Dependencies
 
 - No external libraries are required. This application uses vanilla JavaScript, HTML, and CSS.
@@ -121,4 +116,4 @@ For major changes, please open an issue first to discuss what you would like to 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

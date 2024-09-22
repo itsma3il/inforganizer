@@ -130,7 +130,7 @@ function addUniversity() {
                 name: universityName,
                 type: universityType,
                 status: universityStatus,
-                createdAt: new Date().toISOString(),
+                createdAt: universities[editingIndex].createdAt,
                 updatedAt: new Date().toISOString()
             };
             editingIndex = null;
@@ -175,6 +175,8 @@ function updateUniversityList() {
 
     universities.forEach((university, index) => {
         const tr = document.createElement("tr");
+        console.log(university.status);
+        university.status == 'Rejected' && tr.classList.add('rejected');
         tr.innerHTML = `
             <td>${index + 1}</td>
             <td>${university.name}</td>

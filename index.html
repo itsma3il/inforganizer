@@ -719,6 +719,11 @@
           </button>
         </li>
         <li>
+          <button id="search-btn" class="menu-item" data-i18n="search">
+            Search
+          </button>
+        </li>
+        <li>
           <button id="closeAll-toggle" class="menu-item">Close All</button>
         </li>
         <li>
@@ -754,6 +759,7 @@
           <p data-i18n="appDescription2"></p>
           <code data-i18n="rememberToSave1"></code>
           <code data-i18n="rememberToSave2"></code>
+          <code data-i18n="rememberToSave5"></code>
           <code data-i18n="rememberToSave3"></code>
           <code data-i18n="rememberToSave4"></code>
           <p data-i18n="haveFun"></p>
@@ -787,6 +793,27 @@
             <button type="submit" data-i18n="add">Add</button>
           </form>
           <div id="reminders-container"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Search Modal -->
+    <div id="searchModal" class="modal" style="display: none">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 data-i18n="search">Search</h2>
+          <span class="close" onclick="closeModal('searchModal')">&times;</span>
+        </div>
+        <div class="modal-body">
+          <form class="flex" id="search_form">
+            <input
+              type="text"
+              id="search_text"
+              class="b-s"
+              data-i18n-placeholder="searchPlaceholder"
+            />
+            <button type="submit" data-i18n="search">Search</button>
+          </form>
+          <div id="search-results"></div>
         </div>
       </div>
     </div>

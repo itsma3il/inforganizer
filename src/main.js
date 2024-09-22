@@ -32,14 +32,21 @@ toggleButton.addEventListener("click", () => {
 });
 function switchTheme() {
     let theme = localStorage.getItem('theme');
+    if (theme === null) {
+        // Check for user's preferred color scheme
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            theme = 'dark-mode';
+        } else {
+            theme = 'light-mode';
+        }
+        localStorage.setItem('theme', theme);
+    }
+
     if (theme === 'dark-mode') {
         document.body.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark-mode');
         document.getElementById('mode-toggle').innerHTML = 'Light';
-
     } else {
         document.body.classList.remove('dark-mode');
-        localStorage.setItem('theme', null);
         document.getElementById('mode-toggle').innerHTML = 'Dark';
     }
 }
@@ -205,7 +212,7 @@ function editUniversity(index) {
     document.querySelector('button[type="submit"]').textContent = 'Update';
 
     // Scroll to the form
-    document.getElementById("university_form").scrollIntoView({ behavior: 'smooth' });
+    document.querySelector('h3[data-i18n="afterBaccalaureate"]').scrollIntoView({ behavior: 'smooth' });
 }
 // Function to delete a university entry with confirmation-------------------------
 function deleteUniversity(index) {
@@ -275,7 +282,6 @@ function toggleDropdown(e) {
         dropdown.style.display = 'none';
     }
 }
-
 const tableDropdownInputs = document.querySelectorAll('.dropdown table td input');
 tableDropdownInputs.forEach((input, index) => {
     input.addEventListener('change', () => {
@@ -377,7 +383,7 @@ function clearAllData() {
     window.location.reload();
 }
 document.addEventListener('keydown', function (event) {
-    if ((event.ctrlKey || event.metaKey) && event.key === 's') {
+    if ((event.ctrlKey || event.metaKey) && (event.key === 's' || event.key === 'S')) {
         event.preventDefault();
         saveData();
     }
@@ -394,12 +400,15 @@ function closeModal(id) {
         m.style.display = 'none';
     }
 }
-// window.onclick = function (event) {
-//     let m = document.querySelector('#welcomeModal');
-//     if (m) {
-//         m.style.display = 'none';
-//     }
-// };
+// Close modal when clicking outside
+window.onclick = function (event) {
+    let modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    });
+};
 function setDefaultDateTime() {
     const reminderDate = document.getElementById("reminder_date");
     const currentDate = new Date();
@@ -409,7 +418,10 @@ function setDefaultDateTime() {
 }
 setDefaultDateTime();
 let reminderBtn = document.getElementById("reminder-btn");
-reminderBtn.addEventListener('click', () => showModal("reminderModal"))
+reminderBtn.addEventListener('click', () => {
+    showModal('reminderModal');
+    document.getElementById("reminder_text").focus();
+})
 
 let reminders = JSON.parse(localStorage.getItem("reminders")) || [];
 
@@ -505,3 +517,92 @@ menuLinks.forEach(link => {
     });
 });
 */
+
+
+// SEARCH MODAL ----------------------------------------------------------------
+const searchModal = document.getElementById("searchModal");
+// in ctrl + f open search modal
+document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && (e.key === 'k' || e.key === 'K')) {
+        e.preventDefault();
+        showModal('searchModal');
+        document.getElementById("search_text").focus();
+    }
+});
+const searchForm = document.getElementById("search_form");
+searchForm.firstElementChild.addEventListener('keyup', () => {
+    let searchText = searchForm.firstElementChild.value.toLowerCase();
+    if (searchText.length > 2) {
+        searchStorage();
+    } else {
+        clearSearch();
+    }
+})
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+})
+// search Local Storage
+function clearSearch() {
+    const searchResults = document.getElementById("search-results");
+    searchResults.innerHTML = "";
+}
+function searchStorage() {
+    const searchText = document.getElementById("search_text").value.toLowerCase();
+    const searchResults = document.getElementById("search-results");
+    searchResults.innerHTML = "";
+
+    // Search universities
+    const universityResults = universities.filter(university =>
+        university.name.toLowerCase().includes(searchText) ||
+        university.type.toLowerCase().includes(searchText) ||
+        university.status.toLowerCase().includes(searchText)
+    );
+
+    // Search userData
+    const userDataResults = userData.slice(2).filter(data => {
+        if (typeof data === 'object' && data !== null) {
+            return (data.id && data.id.toLowerCase().includes(searchText)) ||
+                (data.value && data.value.toLowerCase().includes(searchText));
+        }
+        return false;
+    });
+    let copiedSvg = `<svg width="15px" height="15px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.4" d="M22 11.1V6.9C22 3.4 20.6 2 17.1 2H12.9C9.4 2 8 3.4 8 6.9V8H11.1C14.6 8 16 9.4 16 12.9V16H17.1C20.6 16 22 14.6 22 11.1Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 17.1V12.9C16 9.4 14.6 8 11.1 8H6.9C3.4 8 2 9.4 2 12.9V17.1C2 20.6 3.4 22 6.9 22H11.1C14.6 22 16 20.6 16 17.1Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.08008 14.9998L8.03008 16.9498L11.9201 13.0498" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+    let copySvg = `<svg width="15px" height="15px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path opacity="0.4" d="M22 6.9V11.1C22 14.6 20.6 16 17.1 16H16V12.9C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2H17.1C20.6 2 22 3.4 22 6.9Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+
+    // Display university results
+    if (universityResults.length > 0) {
+        searchResults.innerHTML += "<h5>Universities:</h5>";
+        const ul = document.createElement("ul");
+        universityResults.forEach(university => {
+            const li = document.createElement("li");
+            li.textContent = `${university.name} - ${university.type} - ${university.status}`;
+            ul.appendChild(li);
+        });
+        searchResults.appendChild(ul);
+    }
+
+    // Display userData results
+    if (userDataResults.length > 0) {
+        searchResults.innerHTML += "<h5>User Data:</h5>";
+        let labels = document.querySelectorAll('label');
+        let ul = document.createElement("ul");
+        userDataResults.forEach(data => {
+            if (data.id != '' && data != '') {
+                let li = document.createElement("li");
+                labels.forEach(label => {
+                    if (label.getAttribute('for') === data.id) {
+                        li.innerHTML = `<span>${label.textContent} : ${data.value}</span>
+                        <button class="search-result-btn" onClick="copyField('${data.id}')">${copySvg}</button>`;
+                        li.id = data.id;
+                    }
+                });
+                ul.appendChild(li);
+            }
+        });
+        searchResults.appendChild(ul);
+    }
+
+    if (universityResults.length === 0 && userDataResults.length === 0) {
+        searchResults.innerHTML = "<p>No results found.</p>";
+    }
+}

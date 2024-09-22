@@ -79,6 +79,7 @@ const translations = {
     rememberToSave2: 'To save your data use CTRL + S or the Save button below.',
     rememberToSave3: 'To clear your data use the Clear All button in the bottom left.',
     rememberToSave4: 'To switch theme use the mode button in the bottom right.',
+    rememberToSave5: 'To search for a university, use CTRL + K or the search button in the top right.',
     haveFun: "Have fun!",
     letsGetStarted: "Let's Get Started!",
 
@@ -89,6 +90,10 @@ const translations = {
     language: "Language",
     english: "English",
     french: "French",
+
+    // New addition
+    search: "Search",
+    searchPlaceholder: "Enter search text",
   },
   fr: {
     title: "Entrez votre nom",
@@ -180,6 +185,10 @@ const translations = {
     language: "Langue",
     english: "Anglais",
     french: "Français",
+
+    // New addition
+    search: "Rechercher",
+    searchPlaceholder: "Entrez le texte de recherche",
   }
 };
 

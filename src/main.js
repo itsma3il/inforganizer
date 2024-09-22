@@ -182,7 +182,7 @@ function updateUniversityList() {
             <td>${university.name}</td>
             <td>${university.type}</td>
             <td>${university.status}</td>
-            <td>${university.createdAt !== undefined ? new Date(university.createdAt).toLocaleDateString() : 'N/A'}</td>
+            <td>${university.createdAt !== undefined ? new Date(university.createdAt).toLocaleDateString() : new Date(university.updatedAt).toLocaleDateString()}</td>
             <td>
                 <button onclick="editUniversity(${index})" class="university-crud-btn blue">Update</button>
                 <button onclick="deleteUniversity(${index})" class="university-crud-btn red">Delete</button>

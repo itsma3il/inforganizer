@@ -1,5 +1,19 @@
 # University Application Organizer (InfOrganizer)
 
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Reminder Feature](#reminder-feature)
+- [Translation Feature](#translation-feature)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Screenshots](#screenshots)
+- [Dependencies](#dependencies)
+- [Browser Compatibility](#browser-compatibility)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Overview
 
 This application helps users organize their personal information, academic records, and manage university applications efficiently. Users can add, edit, and delete universities, store personal information, and switch between light and dark modes. The app supports custom sections and fields, ensuring flexibility in handling various kinds of information.
@@ -76,3 +90,35 @@ These translations are handled using the `data-i18n` attribute for different UI 
 - **HTML5/CSS3**: For the app structure and design.
 - **JavaScript**: For handling dynamic functionalities such as CRUD operations, reminders, and localization.
 - **Local Storage**: To save user data, reminders, and theme preferences.
+
+## Screenshots
+
+![Screenshot 1](images/screenshot1.png)
+
+## Dependencies
+
+- No external libraries are required. This application uses vanilla JavaScript, HTML, and CSS.
+
+## Browser Compatibility
+
+This application is compatible with modern web browsers including:
+- Google Chrome (version 90+)
+- Mozilla Firefox (version 88+)
+- Microsoft Edge (version 90+)
+- Safari (version 14+)
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature-branch-name`
+3. Make your changes and commit them: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin feature-branch-name`
+5. Submit a pull request
+
+For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
